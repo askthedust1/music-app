@@ -16,3 +16,8 @@ export interface IAlbum {
     date: string;
     artist: string;
 }
+
+export interface IUser {
+    username: string;
+    password: string;
+}
