@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 
-const AlbumSchema = new Schema({
+const ArtistSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -13,5 +13,5 @@ const AlbumSchema = new Schema({
 });
 
 
-const Album = mongoose.model('Album', AlbumSchema);
-export default Album;
+const Artist = mongoose.model('Artist', ArtistSchema);
+export default Artist;

@@ -15,7 +15,7 @@ const TrackSchema = new Schema({
         required: true,
         validate: {
             validator: async (value: mongoose.Types.ObjectId) => await Album.findById(value),
-            message: 'Artist not find!'
+            message: 'Album not find!'
         }
     },
     time: String
