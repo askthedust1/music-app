@@ -2,6 +2,7 @@ import express from 'express';
 import {imagesUpload} from "../multer";
 import mongoose from "mongoose";
 import Album from "../models/Album";
+import {IAlbum} from "../types";
 
 const albumsRouter = express.Router();
 
@@ -36,12 +37,12 @@ albumsRouter.get('/:id', async (req, res) => {
 
 
 albumsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
-    const albumData = {
+    const albumData: IAlbum = {
         name: req.body.name,
         date: req.body.date,
         image: req.file ? req.file.filename : null,
         artist: req.body.artist,
-    }
+    };
 
     const album= new Album(albumData);
 

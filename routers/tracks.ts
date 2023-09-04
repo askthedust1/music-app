@@ -1,7 +1,7 @@
 import express from 'express';
-import {imagesUpload} from "../multer";
 import mongoose from "mongoose";
 import Track from "../models/Track";
+import {ITrack} from "../types";
 
 const tracksRouter = express.Router();
 
@@ -22,12 +22,11 @@ tracksRouter.get('/', async (req, res) => {
 
 
 tracksRouter.post('/', async (req, res, next) => {
-    const trackData = {
+    const trackData: ITrack = {
         name: req.body.name,
-        time: req.body.time,
         album: req.body.album,
-    }
-
+        time: req.body.time,
+    };
 
     const track = new Track(trackData);
 
@@ -38,9 +37,7 @@ tracksRouter.post('/', async (req, res, next) => {
         if (e instanceof mongoose.Error.ValidationError) {
             return res.status(400).send(e);
         }
-
         next(e);
-
     }
 
 });

@@ -10,11 +10,12 @@ const TrackSchema = new Schema({
         required: true
     },
     album: {
-        type: mongoose.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Album',
         required: true,
         validate: {
-            validator: async (value: mongoose.Types.ObjectId) => await Album.findById(value),
+            validator: async (value: mongoose.Types.ObjectId) =>
+                await Album.findById(value),
             message: 'Album not find!'
         }
     },

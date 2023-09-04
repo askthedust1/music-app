@@ -2,6 +2,7 @@ import express from 'express';
 import Artist from "../models/Artist";
 import {imagesUpload} from "../multer";
 import mongoose from "mongoose";
+import {IArtist} from "../types";
 
 const artistsRouter = express.Router();
 
@@ -16,11 +17,11 @@ artistsRouter.get('/', async (req, res) => {
 
 
 artistsRouter.post('/', imagesUpload.single('image'), async (req, res, next) => {
-    const artistData = {
+    const artistData: IArtist = {
         name: req.body.name,
         description: req.body.description,
         image: req.file ? req.file.filename : null,
-    }
+    };
 
     const artist = new Artist(artistData);
 

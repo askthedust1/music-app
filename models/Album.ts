@@ -15,7 +15,7 @@ const AlbumSchema = new Schema({
     },
     image: String,
     artist: {
-        type: mongoose.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Artist',
         required: true,
         validate: {
