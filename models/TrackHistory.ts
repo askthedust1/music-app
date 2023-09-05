@@ -26,7 +26,10 @@ const TrackHistorySchema = new Schema({
             message: 'User not find!'
         }
     },
-    datetime: String
+    datetime: {
+        type: String,
+        required: true
+    },
 });
 
 
