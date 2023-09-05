@@ -13,6 +13,7 @@ usersRouter.post('/', async (req, res, next) => {
         });
 
 
+        user.generateToken();
         await user.save();
         return res.send(user);
     } catch (e) {
@@ -20,12 +21,11 @@ usersRouter.post('/', async (req, res, next) => {
             return res.status(400).send(e);
         }
 
-
         return next(e);
     }
 });
 
-usersRouter.post('/sessions', async (req, res, next) => {
+usersRouter.post('/sessions', async (req, res) => {
     const user = await User.findOne({username: req.body.username});
 
 
