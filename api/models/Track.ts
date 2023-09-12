@@ -19,7 +19,11 @@ const TrackSchema = new Schema({
             message: 'Album not find!'
         }
     },
-    time: String
+    time: String,
+    number: {
+        type: Number,
+        required: true
+    },
 });
 
 
