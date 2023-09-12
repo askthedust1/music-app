@@ -1,6 +1,7 @@
 import {IArtistFull} from "../../types";
 import {createSlice} from "@reduxjs/toolkit";
 import {fetchArtists} from "./artistsThunk";
+import {RootState} from "../../app/store";
 
 interface ArtistsState {
     artists: IArtistFull[];
@@ -21,16 +22,17 @@ export const ArtistsSlice = createSlice({
             state.fetchLoading = true;
         });
 
-        builder.addCase(fetchArtists.fulfilled, (state, {payload: products}) => {
+        builder.addCase(fetchArtists.fulfilled, (state, {payload: artists}) => {
             state.fetchLoading = false;
-            state.artists = products;
+            state.artists = artists;
         });
 
         builder.addCase(fetchArtists.rejected, (state) => {
             state.fetchLoading = false;
         });
-
     }
 });
 
 export const artistsReducer = ArtistsSlice.reducer;
+export const selectArtists = (state: RootState) => state.artists.artists;
+export const selectLoading = (state: RootState) => state.artists.fetchLoading;

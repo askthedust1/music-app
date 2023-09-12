@@ -5,8 +5,23 @@ export interface IArtistBase {
 }
 
 export interface IArtistFull {
-    id: string;
+    _id: string;
     name: string;
     description: string;
     image: string | null;
+}
+
+export interface IAlbumBase {
+    name: string;
+    image: string | null;
+    date: string;
+    artist: string;
+}
+
+export interface IAlbumFull {
+    _id: string;
+    name: string;
+    image: string | null;
+    date: string;
+    artist: string;
 }

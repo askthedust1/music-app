@@ -1,0 +1,8 @@
+body {
+    background-image: linear-gradient(rgb(70, 76, 82), rgb(7, 7, 8) 85%);
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    overflow: scroll;
+    width: 100%;
+}
