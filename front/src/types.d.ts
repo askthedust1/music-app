@@ -25,3 +25,11 @@ export interface IAlbumFull {
     date: string;
     artist: string;
 }
+
+export interface ITrackFull {
+    _id: string;
+    name: string;
+    album: string;
+    time: string;
+    number: number;
+}

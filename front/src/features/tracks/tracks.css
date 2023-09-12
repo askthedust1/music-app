@@ -1,0 +1,49 @@
+.music {
+    cursor: pointer;
+    display: flex;
+    font-size: 18px;
+    font-weight: 300;
+    transition: background .3s;
+    width: 100%;
+}
+
+.music.active {
+    color: #16a248;
+}
+
+.music.active .music-title {
+    color: #16a248;
+}
+
+.music:hover {
+    background: #000;
+}
+
+.music-number,
+.music-title,
+.music-duration {
+    padding: 10px;
+}
+
+.music-number {
+    margin-right: 20px;
+    min-width: 25px;
+}
+
+.music-number:after {
+    content: '.';
+}
+
+.music-title {
+    color: rgba(255, 255, 255, 0.81);
+    width: 100%;
+}
+
+.music-duration {
+    text-align: right;
+    width: 100%;
+}
+
+.album-musics {
+    width: 100%;
+}

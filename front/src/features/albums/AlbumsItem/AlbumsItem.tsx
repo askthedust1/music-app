@@ -11,7 +11,7 @@ interface IProps {
 
 const AlbumsItem: React.FC<IProps> = ({_id, name, image, date}) => {
     return (
-        <Link to={`/tracks?album=${_id}`} className="card">
+        <Link to={`/tracks/${_id}`} className="card">
             <div className="overlayer">
                 <i className="far fa-play-circle"></i>
             </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import {Card, CardContent, CardMedia, Typography} from '@mui/material';
 import {apiUrl} from "../../../constants";
 import {Link} from "react-router-dom";
 

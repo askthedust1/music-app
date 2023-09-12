@@ -2,6 +2,7 @@ export interface ITrack {
     name: string;
     album: string;
     time: string;
+    number: number;
 }
 
 export interface IArtist {
