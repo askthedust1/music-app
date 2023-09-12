@@ -125,8 +125,6 @@ const run = async () => {
         time: '4:40',
         number: 5,
     }, {
-
-    }, {
         name: 'Intro',
         album: altjAlbum2._id,
         time: '4:38',
