@@ -15,12 +15,19 @@ const Albums = () => {
             dispatch(fetchAlbums(id));
         }
     }, [dispatch, id]);
+
+    const sortAlbums = albums.slice().sort((a, b) => {
+        const dateA = new Date(a.date).getTime();
+        const dateB = new Date(b.date).getTime();
+        return dateB - dateA;
+    });
+
     return (
         <div>
             <div className="wrapper">
-                {albums[0]?.artist.name}
+                <h1 className="artist">{albums[0]?.artist.name}</h1>
                 <div className="cards">
-                    {albums?.map((item, index) => (
+                    {sortAlbums?.map((item, index) => (
                         <AlbumsItem
                             _id={item._id}
                             key={index}

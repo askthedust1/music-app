@@ -18,9 +18,10 @@ const AlbumsItem: React.FC<IProps> = ({_id, name, image, date, tracksAmount}) =>
             </div>
             <img src={apiUrl + '/' + image} alt={name}/>
             <div className="title">
-                <span>{name}</span>
-                <span>{date}</span>
-                <h2>{tracksAmount}</h2>
+                <span style={{display: 'block'}}>{name}</span>
+                <h6 className="subtext">{date}</h6>
+                <h6 className="subtext" style={{padding: '0 10px'}}>&#183;</h6>
+                <h6 className="subtext">{tracksAmount} tracks</h6>
             </div>
         </Link>
     );
