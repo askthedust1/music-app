@@ -27,6 +27,7 @@ export interface IAlbumFull {
         _id: string;
         name: string;
     };
+    trackAmount: number;
 }
 
 export interface IAlbum {

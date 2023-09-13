@@ -20,13 +20,14 @@ const Albums = () => {
             <div className="wrapper">
                 {albums[0]?.artist.name}
                 <div className="cards">
-                    {albums.map((item, index) => (
+                    {albums?.map((item, index) => (
                         <AlbumsItem
                             _id={item._id}
                             key={index}
                             image={item.image}
                             name={item.name}
                             date={item.date}
+                            tracksAmount={item.trackAmount}
                         />
                     ))}
                 </div>

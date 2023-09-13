@@ -2,7 +2,8 @@ import express from 'express';
 import {imagesUpload} from "../multer";
 import mongoose from "mongoose";
 import Album from "../models/Album";
-import {IAlbum} from "../types";
+import {IAlbum, IAlbumNew} from "../types";
+import Track from "../models/Track";
 
 const albumsRouter = express.Router();
 
@@ -10,8 +11,15 @@ albumsRouter.get('/', async (req, res) => {
     try {
         if (req.query.artist) {
             const queryId = req.query.artist as string;
-            const result = await Album.find({'artist': queryId}).populate('artist');
-            return res.send(result);
+            const albums = await Album.find({'artist': queryId}).populate('artist');
+
+            const newAlbums: IAlbumNew[] = [];
+
+            for (const album of albums) {
+                const tracksAmount = await Track.countDocuments({'album': album._id});
+                newAlbums.push({ ...album.toObject(), trackAmount: tracksAmount});
+            }
+            return res.send(newAlbums);
         } else {
             const result = await Album.find();
             return res.send(result);

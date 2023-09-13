@@ -7,9 +7,10 @@ interface IProps {
     name: string;
     image: string | null;
     date: string;
+    tracksAmount: number;
 }
 
-const AlbumsItem: React.FC<IProps> = ({_id, name, image, date}) => {
+const AlbumsItem: React.FC<IProps> = ({_id, name, image, date, tracksAmount}) => {
     return (
         <Link to={`/tracks/${_id}`} className="card">
             <div className="overlayer">
@@ -19,6 +20,7 @@ const AlbumsItem: React.FC<IProps> = ({_id, name, image, date}) => {
             <div className="title">
                 <span>{name}</span>
                 <span>{date}</span>
+                <h2>{tracksAmount}</h2>
             </div>
         </Link>
     );

@@ -21,6 +21,17 @@ export interface IAlbum {
     };
 }
 
+export interface IAlbumNew {
+    name: string;
+    image: string | null;
+    date: string;
+    artist: {
+        _id: string;
+        name: string;
+    };
+    trackAmount?: number;
+}
+
 export interface IUser {
     username: string;
     password: string;
