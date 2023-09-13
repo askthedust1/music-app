@@ -1,6 +1,6 @@
 export interface ITrack {
     name: string;
-    album: string;
+    album: IAlbum;
     time: string;
     number: number;
 }
@@ -15,7 +15,10 @@ export interface IAlbum {
     name: string;
     image: string | null;
     date: string;
-    artist: string;
+    artist: {
+        _id: string;
+        name: string;
+    };
 }
 
 export interface IUser {

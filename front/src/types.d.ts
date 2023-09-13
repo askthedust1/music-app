@@ -23,13 +23,29 @@ export interface IAlbumFull {
     name: string;
     image: string | null;
     date: string;
+    artist: {
+        _id: string;
+        name: string;
+    };
+}
+
+export interface IAlbum {
+    _id: string;
+    name: string;
+    image: string | null;
+    date: string;
     artist: string;
+}
+
+export interface IType {
+    result: ITrackFull[];
+    artist: IAlbumFull;
 }
 
 export interface ITrackFull {
     _id: string;
     name: string;
-    album: string;
+    album: IAlbum;
     time: string;
     number: number;
 }

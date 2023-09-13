@@ -18,6 +18,7 @@ const Albums = () => {
     return (
         <div>
             <div className="wrapper">
+                {albums[0]?.artist.name}
                 <div className="cards">
                     {albums.map((item, index) => (
                         <AlbumsItem

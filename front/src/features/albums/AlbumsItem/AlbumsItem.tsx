@@ -15,7 +15,7 @@ const AlbumsItem: React.FC<IProps> = ({_id, name, image, date}) => {
             <div className="overlayer">
                 <i className="far fa-play-circle"></i>
             </div>
-            <img src={apiUrl + '/'  + image} alt={name}/>
+            <img src={apiUrl + '/' + image} alt={name}/>
             <div className="title">
                 <span>{name}</span>
                 <span>{date}</span>

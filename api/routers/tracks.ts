@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from "mongoose";
 import Track from "../models/Track";
 import {ITrack} from "../types";
+import Album from "../models/Album";
 
 const tracksRouter = express.Router();
 
@@ -9,8 +10,10 @@ tracksRouter.get('/', async (req, res) => {
     try {
         if (req.query.album) {
             const queryId = req.query.album as string;
-            const result = await Track.find({'album': queryId});
-            return res.send(result);
+            const result = await Track.find({'album': queryId}).populate('album');
+            const artist = await Album.findById(result[0].album._id).populate('artist');
+            return res.send({ result, artist});
+
         } else {
             const result = await Track.find();
             return res.send(result);

@@ -1,15 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store";
-import {ITrackFull} from "../../types";
+import {ITrackFull, IType} from "../../types";
 import {fetchTracks} from "./tracksThunk";
 
 interface TracksState {
-    tracks: ITrackFull[];
+    tracks: IType | null;
     fetchLoading: boolean;
 }
 
 const initialState: TracksState = {
-    tracks: [],
+    tracks: null,
     fetchLoading: false,
 };
 
