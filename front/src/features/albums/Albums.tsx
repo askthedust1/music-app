@@ -32,7 +32,7 @@ const Albums = () => {
                         :
                         <div>
                             <h1 className="artist">{albums[0]?.artist.name}</h1>
-                            <div className="cards">
+                            <div className="cards" style={{marginBottom:'30px'}}>
                                 {sortAlbums?.map((item, index) => (
                                     <AlbumsItem
                                         _id={item._id}
