@@ -1,11 +1,14 @@
 import React from 'react';
 import './nav.css';
+import {NavLink} from "react-router-dom";
 
 const Nav = () => {
     return (
         <div className="header header-wrap-one">
-            <div className="container cf">
-                <h1 className="logo">LOGO</h1>
+            <div className="container1 cf">
+                <h1 className="logo">
+                    <NavLink to="/"><img className="logo" src="https://i.ibb.co/MBNpPfK/1logo3.png" alt="1logo3" /></NavLink>
+                </h1>
                 <div className="navigation">
                     <ul>
                         <li>Home</li>
