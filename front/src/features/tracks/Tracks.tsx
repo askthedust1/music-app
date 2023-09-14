@@ -20,22 +20,20 @@ const Tracks = () => {
         }
     }, [dispatch, id]);
 
-    const sortedTracks = tracks ? [...tracks.result] : [];
-    sortedTracks.sort((a, b) => a.number - b.number);
-
     return (
         <>
             {
                 loading ? <SpinnerLoading/>
                     :
+                    tracks &&
                     <div className="container">
                         <div id="album" className="album-info">
-                            <img className="album-image" src={apiUrl + '/' + tracks?.artist.image || undefined} alt={tracks?.artist.name}/>
-                            <p className="album-title">{tracks?.artist.name}</p>
-                            <p className="album-artist">{tracks?.artist.artist.name}</p>
+                            <img className="album-image" src={apiUrl + '/' + tracks.artist.image || undefined} alt={tracks?.artist.name}/>
+                            <p className="album-title">{tracks.artist.name}</p>
+                            <p className="album-artist">{tracks.artist.artist.name}</p>
                         </div>
                         <div id="list" className="album-musics">
-                            {sortedTracks.map((item, index) => (
+                            {tracks?.result.map((item, index) => (
                                 <TracksItem
                                     _id={item._id}
                                     key={index}

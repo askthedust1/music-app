@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import Album from "../models/Album";
 import {IAlbum, IAlbumNew} from "../types";
 import Track from "../models/Track";
+import Artist from "../models/Artist";
 
 const albumsRouter = express.Router();
 
@@ -11,7 +12,8 @@ albumsRouter.get('/', async (req, res) => {
     try {
         if (req.query.artist) {
             const queryId = req.query.artist as string;
-            const albums = await Album.find({'artist': queryId}).populate('artist');
+            const albums = await Album.find({'artist': queryId}).sort({date: -1});
+            const artist = await Artist.find({'_id': queryId});
 
             const newAlbums: IAlbumNew[] = [];
 
@@ -19,7 +21,7 @@ albumsRouter.get('/', async (req, res) => {
                 const tracksAmount = await Track.countDocuments({'album': album._id});
                 newAlbums.push({ ...album.toObject(), trackAmount: tracksAmount});
             }
-            return res.send(newAlbums);
+            return res.send({newAlbums, artist});
         } else {
             const result = await Album.find();
             return res.send(result);

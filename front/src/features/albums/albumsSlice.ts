@@ -1,15 +1,15 @@
-import {IAlbumFull} from "../../types";
+import {IAlbumType} from "../../types";
 import {createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store";
 import {fetchAlbums} from "./albumsThunk";
 
 interface AlbumsState {
-    albums: IAlbumFull[];
+    albums: IAlbumType | null;
     fetchLoading: boolean;
 }
 
 const initialState: AlbumsState = {
-    albums: [],
+    albums: null,
     fetchLoading: false,
 };
 

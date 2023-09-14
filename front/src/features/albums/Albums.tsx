@@ -18,12 +18,6 @@ const Albums = () => {
         }
     }, [dispatch, id]);
 
-    const sortAlbums = albums.slice().sort((a, b) => {
-        const dateA = new Date(a.date).getTime();
-        const dateB = new Date(b.date).getTime();
-        return dateB - dateA;
-    });
-
     return (
         <div>
             <div className="wrapper">
@@ -31,9 +25,9 @@ const Albums = () => {
                     loading ? <SpinnerLoading/>
                         :
                         <div>
-                            <h1 className="artist">{albums[0]?.artist.name}</h1>
+                            <h1 className="artist">{albums?.artist[0].name}</h1>
                             <div className="cards" style={{marginBottom:'30px'}}>
-                                {sortAlbums?.map((item, index) => (
+                                {albums?.newAlbums.map((item, index) => (
                                     <AlbumsItem
                                         _id={item._id}
                                         key={index}

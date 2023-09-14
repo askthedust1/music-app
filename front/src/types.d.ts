@@ -1,9 +1,3 @@
-export interface IArtistBase {
-    name: string;
-    image: string | null;
-    description: string;
-}
-
 export interface IArtistFull {
     _id: string;
     name: string;
@@ -11,10 +5,26 @@ export interface IArtistFull {
     image: string | null;
 }
 
-export interface IAlbumBase {
+
+export interface IAlbumFull {
+    _id: string;
     name: string;
     image: string | null;
-    date: string;
+    date: number;
+    artist: string;
+    trackAmount: number;
+}
+
+export interface IAlbumType {
+    newAlbums: IAlbumFull[],
+    artist: IArtistFull[]
+}
+
+export interface IAlbum {
+    _id: string;
+    name: string;
+    image: string | null;
+    date: number;
     artist: string;
 }
 
@@ -22,7 +32,7 @@ export interface IAlbumFull {
     _id: string;
     name: string;
     image: string | null;
-    date: string;
+    date: number;
     artist: {
         _id: string;
         name: string;
@@ -30,17 +40,19 @@ export interface IAlbumFull {
     trackAmount: number;
 }
 
-export interface IAlbum {
-    _id: string;
-    name: string;
-    image: string | null;
-    date: string;
-    artist: string;
-}
-
 export interface IType {
     result: ITrackFull[];
-    artist: IAlbumFull;
+    artist: {
+        _id: string;
+        name: string;
+        image: string | null;
+        date: number;
+        artist: {
+            _id: string;
+            name: string;
+        };
+        trackAmount: number;
+    };
 }
 
 export interface ITrackFull {

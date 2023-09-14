@@ -6,7 +6,7 @@ interface IProps {
     _id: string;
     name: string;
     image: string | null;
-    date: string;
+    date: number;
     tracksAmount: number;
 }
 

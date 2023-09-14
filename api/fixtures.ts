@@ -30,22 +30,22 @@ const run = async () => {
     const [placeboAlbum1, placeboAlbum2, altjAlbum1, altjAlbum2] = await Album.create({
         name: 'Sleeping with Ghosts',
         image: 'fixtures/Sleeping_with_ghosts.jpg',
-        date: '24 March 2003',
+        date: 2003,
         artist: artistPlacebo._id
     }, {
         name: 'Meds',
         image: 'fixtures/meds.jpg',
-        date: '13 March 2006',
+        date: 2006,
         artist: artistPlacebo._id
     }, {
         name: 'Relaxer',
         image: 'fixtures/relaxer.jpg',
-        date: '2 June 2017',
+        date: 2017,
         artist: artistAltJ._id
     }, {
         name: 'This Is All Yours',
         image: 'fixtures/this_is_all_yours.jpg',
-        date: '22 September 2014',
+        date: 2014,
         artist: artistAltJ._id
     });
 
