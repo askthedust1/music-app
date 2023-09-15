@@ -1,8 +1,11 @@
 import React from 'react';
 import './nav.css';
 import {NavLink} from "react-router-dom";
+import {useAppSelector} from "../../app/hook";
+import {selectUser} from "../../features/users/usersSlice";
 
 const Nav = () => {
+    const user = useAppSelector(selectUser);
     return (
         <div className="header header-wrap-one">
             <div className="container1 cf">
@@ -10,12 +13,21 @@ const Nav = () => {
                     <NavLink to="/"><img className="logo" src="https://i.ibb.co/MBNpPfK/1logo3.png" alt="1logo3" /></NavLink>
                 </h1>
                 <div className="navigation">
-                    <ul>
-                        <li>Home</li>
-                        <NavLink to="/tracks_history">About</NavLink>
-                        <li>Add new</li>
-                        <li>Blog</li>
-                    </ul>
+                    {
+                        user ?
+                            <ul>
+                                <NavLink className="list" to="/">Home</NavLink>
+                                <NavLink className="list" to="/tracks_history">Tracks History</NavLink>
+                                <li className="list">Add new</li>
+                                <li className="list">Log Out</li>
+                            </ul>
+                            :
+                            <ul>
+                                <NavLink className="list" to="/register">Sign up</NavLink>
+                                <NavLink className="list" to="/login">Sign in</NavLink>
+                            </ul>
+                    }
+
                 </div>
             </div>
         </div>

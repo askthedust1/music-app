@@ -17,7 +17,7 @@ const run = async () => {
         console.log('Collections were not present, skipping drop...');
     }
 
-    const [artistPlacebo, artistAltJ, artistMassive] = await Artist.create({
+    const [artistPlacebo, artistAltJ, artistMassive, artistFlorence] = await Artist.create({
         name: 'Placebo',
         description: 'alternative rock',
         image: 'fixtures/placebo.jpg'
@@ -29,9 +29,13 @@ const run = async () => {
         name: 'Massive Attack',
         description: 'trip hop',
         image: 'fixtures/massive_attack.jpg'
+    }, {
+        name: 'Florence and the Machine',
+        description: 'indie',
+        image: 'fixtures/florence.jpeg'
     });
 
-    const [placeboAlbum1, placeboAlbum2, altjAlbum1, altjAlbum2, massiveAlbum1] = await Album.create({
+    const [placeboAlbum1, placeboAlbum2, altjAlbum1, altjAlbum2, massiveAlbum1, florenceAlbum1] = await Album.create({
         name: 'Sleeping with Ghosts',
         image: 'fixtures/Sleeping_with_ghosts.jpg',
         date: 2003,
@@ -56,6 +60,11 @@ const run = async () => {
         image: 'fixtures/mezzanine.png',
         date: 1998,
         artist: artistMassive._id
+    }, {
+        name: 'Ceremonials',
+        image: 'fixtures/ceremonials.jpeg',
+        date: 2011,
+        artist: artistFlorence._id
     });
 
     await Track.create({
@@ -183,6 +192,21 @@ const run = async () => {
         album: massiveAlbum1._id,
         time: '5:55',
         number: 5,
+    }, {
+        name: 'Spectrum',
+        album: florenceAlbum1._id,
+        time: '5:11',
+        number: 1,
+    }, {
+        name: 'Shake It Out',
+        album: florenceAlbum1._id,
+        time: '3:11',
+        number: 2,
+    }, {
+        name: 'Never Let Me Go',
+        album: florenceAlbum1._id,
+        time: '4:31',
+        number: 3,
     });
 
 

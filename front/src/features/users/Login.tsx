@@ -1,47 +1,37 @@
 import React, { useState } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
-import { selectRegisterError } from './usersSlice';
-import { register } from './usersThunk';
-import {RegisterMutation} from "../../types";
+import {Link as RouterLink, useNavigate} from 'react-router-dom';
+import { LoginMutation } from '../../types';
+import {Alert, Avatar, Box, Button, Container, Grid, Link, TextField, Typography} from '@mui/material';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import {useAppDispatch, useAppSelector} from "../../app/hook";
+import {selectLoginError} from "./usersSlice";
+import { login } from './usersThunk';
 
-const Register = () => {
+
+const Login = () => {
     const dispatch = useAppDispatch();
-    const error = useAppSelector(selectRegisterError);
+    const error = useAppSelector(selectLoginError);
     const navigate = useNavigate();
 
-    const [state, setState] = useState<RegisterMutation>({
+
+    const [state, setState] = useState<LoginMutation>({
         username: '',
         password: '',
     });
 
+
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
-        setState((prevState) => ({
-            ...prevState,
-            [name]: value,
-        }));
+        setState(prevState => ({...prevState, [name]: value}));
     };
+
 
     const submitFormHandler = async (event: React.FormEvent) => {
         event.preventDefault();
-
-        try {
-            await dispatch(register(state)).unwrap();
-            navigate('/');
-        } catch (e) {
-            // nothing
-        }
+        await dispatch(login(state)).unwrap();
+        navigate('/');
     };
 
-    const getFieldError = (name: string) => {
-        try {
-            return error?.errors[name].message;
-        } catch {
-            return undefined;
-        }
-    };
 
     return (
         <Container component="main" maxWidth="xs">
@@ -53,34 +43,41 @@ const Register = () => {
                     alignItems: 'center',
                 }}
             >
+                <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
+                    <LockOpenIcon/>
+                </Avatar>
                 <Typography component="h1" variant="h5" sx={{color: 'white'}}>
-                    Sign up
+                    Sign in
                 </Typography>
-                <Box component="form" noValidate onSubmit={submitFormHandler} sx={{mt: 3}}>
+                {error && (
+                    <Alert
+                        severity="error"
+                        sx={{mt: 3, width: '100%'}}
+                    >
+                        {error.error}
+                    </Alert>
+                )}
+                <Box component="form" onSubmit={submitFormHandler} sx={{mt: 3}}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
                                 sx={{width: '100%', background: 'white', borderRadius: 2}}
                                 label="Username"
                                 name="username"
-                                autoComplete="new-username"
+                                autoComplete="current-username"
                                 value={state.username}
                                 onChange={inputChangeHandler}
-                                error={Boolean(getFieldError('username'))}
-                                helperText={getFieldError('username')}
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
                                 sx={{width: '100%', background: 'white', borderRadius: 2}}
-                                name="password"
                                 label="Password"
+                                name="password"
                                 type="password"
-                                autoComplete="new-password"
+                                autoComplete="current-password"
                                 value={state.password}
                                 onChange={inputChangeHandler}
-                                error={Boolean(getFieldError('password'))}
-                                helperText={getFieldError('password')}
                             />
                         </Grid>
                     </Grid>
@@ -90,12 +87,12 @@ const Register = () => {
                         variant="contained"
                         sx={{mt: 3, mb: 2, background: '#00E20B', color: 'black'}}
                     >
-                        Sign Up
+                        Sign In
                     </Button>
                     <Grid container justifyContent="flex-end">
                         <Grid item>
-                            <Link component={RouterLink} to="/login" variant="body2">
-                                Already have an account? Sign in
+                            <Link component={RouterLink} to="/register" variant="body2">
+                                Or sign up
                             </Link>
                         </Grid>
                     </Grid>
@@ -104,4 +101,6 @@ const Register = () => {
         </Container>
     );
 };
-export default Register;
+
+
+export default Login;
