@@ -12,7 +12,7 @@ const Nav = () => {
                 <div className="navigation">
                     <ul>
                         <li>Home</li>
-                        <li>About</li>
+                        <NavLink to="/tracks_history">About</NavLink>
                         <li>Add new</li>
                         <li>Blog</li>
                     </ul>

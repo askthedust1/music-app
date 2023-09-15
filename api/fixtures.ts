@@ -17,7 +17,7 @@ const run = async () => {
         console.log('Collections were not present, skipping drop...');
     }
 
-    const [artistPlacebo, artistAltJ] = await Artist.create({
+    const [artistPlacebo, artistAltJ, artistMassive] = await Artist.create({
         name: 'Placebo',
         description: 'alternative rock',
         image: 'fixtures/placebo.jpg'
@@ -25,9 +25,13 @@ const run = async () => {
         name: 'Alt-J',
         description: 'indie rock',
         image: 'fixtures/Alt-j.jpeg'
+    }, {
+        name: 'Massive Attack',
+        description: 'trip hop',
+        image: 'fixtures/massive_attack.jpg'
     });
 
-    const [placeboAlbum1, placeboAlbum2, altjAlbum1, altjAlbum2] = await Album.create({
+    const [placeboAlbum1, placeboAlbum2, altjAlbum1, altjAlbum2, massiveAlbum1] = await Album.create({
         name: 'Sleeping with Ghosts',
         image: 'fixtures/Sleeping_with_ghosts.jpg',
         date: 2003,
@@ -47,6 +51,11 @@ const run = async () => {
         image: 'fixtures/this_is_all_yours.jpg',
         date: 2014,
         artist: artistAltJ._id
+    }, {
+        name: 'Mezzanine',
+        image: 'fixtures/mezzanine.png',
+        date: 1998,
+        artist: artistMassive._id
     });
 
     await Track.create({
@@ -149,7 +158,33 @@ const run = async () => {
         album: altjAlbum2._id,
         time: '4:59',
         number: 5,
+    }, {
+        name: 'Angel',
+        album: massiveAlbum1._id,
+        time: '6:18',
+        number: 1,
+    }, {
+        name: 'Risingson',
+        album: massiveAlbum1._id,
+        time: '4:58',
+        number: 2,
+    }, {
+        name: 'Teardrop',
+        album: massiveAlbum1._id,
+        time: '5:29',
+        number: 3,
+    }, {
+        name: 'Inertia Creeps',
+        album: massiveAlbum1._id,
+        time: '5:56',
+        number: 4,
+    }, {
+        name: 'Man Next Door',
+        album: massiveAlbum1._id,
+        time: '5:55',
+        number: 5,
     });
+
 
     await db.close();
 };
