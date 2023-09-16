@@ -1,0 +1,48 @@
+.tracksList {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 300;
+    transition: background .3s;
+    width: 100%;
+}
+
+.tracksList.active {
+    color: #16a248;
+}
+
+.tracksList.active .tracksList-artist {
+    color: #16a248;
+}
+
+.tracksList:hover {
+    background: #000;
+    color: #94e701;
+}
+
+.tracksList-track,
+.tracksList-artist,
+.tracksList-time {
+    padding: 10px;
+    color: #ffffff;
+}
+
+.tracksList-track {
+    margin-right: 20px;
+    width: 30%;
+}
+
+.tracksList-artist {
+    color: rgba(255, 255, 255, 0.81);
+    font-weight: bold;
+    width: 40%;
+}
+
+.tracksList-time {
+    text-align: right;
+}
+
+.size {
+    width: 80%;
+}

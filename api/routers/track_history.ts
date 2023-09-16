@@ -5,7 +5,7 @@ import auth, {RequestWithUser} from "../middleware/auth";
 
 const trackHistoryRouter = express.Router();
 
-trackHistoryRouter.get('/', auth, async (req, res, next) => {
+trackHistoryRouter.get('/', auth, async (req, res) => {
     const user = (req as RequestWithUser).user;
     try {
         const result = await TrackHistory.find({'user': user._id})

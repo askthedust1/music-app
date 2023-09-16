@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axiosApi from "../../axiosApi";
-import {IHistory, IHistoryPost, IType} from "../../types";
+import {IHistory, IHistoryPost} from "../../types";
 import {RootState} from "../../app/store";
 
 export const createHistory = createAsyncThunk<void, IHistoryPost, {state: RootState}>(
