@@ -1,30 +1,45 @@
 import express from "express";
 import mongoose from "mongoose";
-import User from "../models/User";
 import TrackHistory from "../models/TrackHistory";
+import auth, {RequestWithUser} from "../middleware/auth";
 
 const trackHistoryRouter = express.Router();
 
-trackHistoryRouter.post('/', async (req, res, next) => {
-    const token = req.get('Authorization');
-
-    if (!token) {
-        return res.status(401).send({error: 'No token present'});
+trackHistoryRouter.get('/', auth, async (req, res, next) => {
+    const user = (req as RequestWithUser).user;
+    try {
+        const result = await TrackHistory.find({'user': user._id})
+            .sort({datetime: -1})
+            .populate({
+                path: 'track',
+                model: 'Track',
+                select: 'name',
+                populate: {
+                    path: 'album',
+                    model: 'Album',
+                    select: 'album',
+                    populate: {
+                        path: 'artist',
+                        model: 'Artist',
+                        select: 'name',
+                    }
+                }
+            })
+        return res.send(result);
+    } catch (e) {
+        return res.sendStatus(500);
     }
 
-    const user = await User.findOne({token});
+});
 
-
-    if (!user) {
-        return res.status(401).send({error: 'Wrong token!'});
-    }
-
+trackHistoryRouter.post('/', auth, async (req, res, next) => {
+    const user = (req as RequestWithUser).user;
     try {
         const history = new TrackHistory({
             track: req.body.track,
             user: user._id,
             datetime: new Date().toISOString(),
-        })
+        });
         await history.save();
         return res.send(history);
     } catch (e) {

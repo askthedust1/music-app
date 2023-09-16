@@ -7,6 +7,7 @@ import Tracks from "./features/tracks/Tracks";
 import Nav from "./components/Nav/Nav";
 import Register from './features/users/Register';
 import Login from './features/users/Login';
+import TrackHistory from "./features/trackHistory/trackHistory";
 function App() {
   return (
     <div className="App">
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/tracks/:id" element={<Tracks/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>} />
+                <Route path="/tracks_history" element={<TrackHistory/>} />
             </Routes>
         </div>
     </div>

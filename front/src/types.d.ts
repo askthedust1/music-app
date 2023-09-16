@@ -99,3 +99,24 @@ export interface LoginMutation {
 export interface GlobalError {
     error: string;
 }
+
+export interface IHistory {
+    _id: string;
+    track: {
+        _id: string;
+        name: string;
+        album: {
+            _id: string;
+            artist: {
+                _id: string;
+                name: string;
+            }
+        }
+    }
+    user: string;
+    datetime: string;
+}
+
+export interface IHistoryPost {
+    track: string;
+}

@@ -16,6 +16,7 @@ const Nav = () => {
                     {
                         user ?
                             <ul>
+                                <b className="list" style={{color: '#00E20B'}}>Hello, {user.username}!</b>
                                 <NavLink className="list" to="/">Home</NavLink>
                                 <NavLink className="list" to="/tracks_history">Tracks History</NavLink>
                                 <li className="list">Add new</li>
