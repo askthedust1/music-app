@@ -61,6 +61,7 @@ export interface ITrackFull {
     album: IAlbum;
     time: string;
     number: number;
+    youtube: string;
 }
 
 export interface User {
@@ -103,16 +104,9 @@ export interface GlobalError {
 export interface IHistory {
     _id: string;
     track: {
-        _id: string;
         name: string;
-        album: {
-            _id: string;
-            artist: {
-                _id: string;
-                name: string;
-            }
-        }
-    }
+    };
+    artist: string;
     user: string;
     datetime: string;
 }

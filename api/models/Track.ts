@@ -20,6 +20,7 @@ const TrackSchema = new Schema({
         }
     },
     time: String,
+    youtube: String,
     number: {
         type: Number,
         required: true

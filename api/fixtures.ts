@@ -72,141 +72,151 @@ const run = async () => {
         album: placeboAlbum1._id,
         time: '3:34',
         number: 1,
+        youtube: 'x7mOxdEDNn8'
     }, {
         name: 'Sleeping with Ghosts',
         album: placeboAlbum1._id,
         time: '4:38',
         number: 2,
+        youtube: 'PC2MFz6n4u0'
     }, {
         name: 'Special Needs',
         album: placeboAlbum1._id,
         time: '5:15',
         number: 3,
+        youtube: 'HClZwFNNMKs'
     }, {
         name: 'I\'ll Be Yours',
         album: placeboAlbum1._id,
         time: '3:32',
         number: 4,
+        youtube: 'ItOT_unMMyM'
     }, {
         name: 'Protect Me from What I Want',
         album: placeboAlbum1._id,
         time: '3:15',
         number: 5,
+        youtube: 'NDT2Xhvadnw'
     }, {
         name: 'Meds',
         album: placeboAlbum2._id,
         time: '2:55',
         number: 1,
+        youtube: 'WO9ewCO7TYI'
     }, {
         name: 'Infra-Red',
         album: placeboAlbum2._id,
         time: '3:15',
         number: 2,
+        youtube: 'AFwy2UkCg6g'
     }, {
         name: 'Post Blue',
         album: placeboAlbum2._id,
         time: '3:11',
         number: 3,
+        youtube: '6vlm4JsBsPE'
     }, {
         name: 'Song to Say Goodbye',
         album: placeboAlbum2._id,
         time: '3:34',
         number: 4,
+        youtube: 'e7bxXjQL3cY'
     }, {
         name: 'Twenty Years',
         album: placeboAlbum2._id,
         time: '6:07',
         number: 5,
+        youtube: '3hTFcwdyWX4'
     }, {
         name: '3WWW',
         album: altjAlbum1._id,
         time: '5:00',
         number: 1,
+        youtube: 'ZwBkXgWNs_M'
     }, {
         name: 'In Cold Blood',
         album: altjAlbum1._id,
         time: '3:26',
         number: 2,
+        youtube: 'rP0uuI80wuY'
     }, {
         name: 'House of the Rising Sun',
         album: altjAlbum1._id,
         time: '5:20',
         number: 3,
+        youtube: 'X1Knskoe15g'
     }, {
         name: 'Deadcrush',
         album: altjAlbum1._id,
         time: '3:52',
         number: 4,
+        youtube: 'GOJUNJ1o394'
     }, {
         name: 'Pleader',
         album: altjAlbum1._id,
         time: '4:40',
         number: 5,
+        youtube: 'RrhSJzM8NLE'
     }, {
         name: 'Intro',
         album: altjAlbum2._id,
         time: '4:38',
         number: 1,
+        youtube: 'GK9qXYgeV20'
     }, {
         name: 'Every Other Freckle',
         album: altjAlbum2._id,
         time: '3:36',
         number: 2,
+        youtube: 'sTkJqSWDPQ8'
     }, {
         name: 'Left Hand Free',
         album: altjAlbum2._id,
         time: '2:53',
         number: 3,
+        youtube: 'NRWUoDpo2fo'
     }, {
         name: 'Nara',
         album: altjAlbum2._id,
         time: '4:58',
         number: 4,
+        youtube: 'aCvccKg5gZo'
     }, {
         name: 'Hunger of the Pine',
         album: altjAlbum2._id,
         time: '4:59',
         number: 5,
+        youtube: 'dCCXq9QB-dQ'
     }, {
         name: 'Angel',
         album: massiveAlbum1._id,
         time: '6:18',
         number: 1,
-    }, {
-        name: 'Risingson',
-        album: massiveAlbum1._id,
-        time: '4:58',
-        number: 2,
+        youtube: 'xiK2JlBpzvI'
     }, {
         name: 'Teardrop',
         album: massiveAlbum1._id,
         time: '5:29',
-        number: 3,
-    }, {
-        name: 'Inertia Creeps',
-        album: massiveAlbum1._id,
-        time: '5:56',
-        number: 4,
-    }, {
-        name: 'Man Next Door',
-        album: massiveAlbum1._id,
-        time: '5:55',
-        number: 5,
+        number: 2,
+        youtube: 'fsmzF1TqslY'
     }, {
         name: 'Spectrum',
         album: florenceAlbum1._id,
         time: '5:11',
         number: 1,
+        youtube: 'iC-_lVzdiFE'
     }, {
-        name: 'Shake It Out',
+        name: 'Hunger',
         album: florenceAlbum1._id,
         time: '3:11',
         number: 2,
+        youtube: '5GHXEGz3PJg'
     }, {
         name: 'Never Let Me Go',
         album: florenceAlbum1._id,
         time: '4:31',
         number: 3,
+        youtube: 'zMBTvuUlm98'
     });
 
 

@@ -12,8 +12,8 @@ const TrackHistory = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const history = useAppSelector(selectHistory);
-    const loading = useAppSelector(selectHistoryLoading)
-    const user = useAppSelector(selectUser)
+    const loading = useAppSelector(selectHistoryLoading);
+    const user = useAppSelector(selectUser);
 
     if (!user) {
         navigate('/');
@@ -35,8 +35,8 @@ const TrackHistory = () => {
                 <div>
                     {history?.map((item, index) => (
                         <div className="tracksList" key={index}>
-                            <p className="tracksList-track">{item.track.album.artist.name}</p>
-                            <p className="tracksList-artist">{item.track.name}</p>
+                            <p className="tracksList-track">{item.track.name}</p>
+                            <p className="tracksList-artist">{item.artist}</p>
                             <p className="tracksList-time">{dayjs(item.datetime).format('DD.MM.YYYY HH:mm:ss')}</p>
                         </div>
                     ))}

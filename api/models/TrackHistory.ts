@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import User from "./User";
 import Track from "./Track";
+import Artist from "./Artist";
 
 const Schema = mongoose.Schema;
 
@@ -15,6 +16,10 @@ const TrackHistorySchema = new Schema({
                 await Track.findById(value),
             message: 'Track not find!'
         }
+    },
+    artist: {
+        type: String,
+        required: true,
     },
     user: {
         type: Schema.Types.ObjectId,

@@ -1,6 +1,6 @@
 import React from 'react';
-import {useAppDispatch} from "../../../app/hook";
-import {createHistory} from "../../trackHistory/trackHistoryThunk";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlay} from "@fortawesome/free-solid-svg-icons";
 
 interface IProps {
     _id: string;
@@ -8,17 +8,16 @@ interface IProps {
     album?: string;
     time: string;
     number: number;
+    openModal: () => void;
 }
 
-const TracksItem: React.FC<IProps> = ({ _id, name, time, number}) => {
-    const dispatch = useAppDispatch();
+const TracksItem: React.FC<IProps> = ({ _id, name, time, number, openModal}) => {
 
-    const addToHistory = async (idTrack: string) => {
-        await dispatch(createHistory({track: idTrack}));
-    }
+
     return (
-        <div className="music" onClick={() => addToHistory(_id)}>
+        <div className="music" onClick={openModal}>
             <p className="music-number">{number}</p>
+            <FontAwesomeIcon className="fa-1x icon" icon={faPlay} style={{color: "#ffffff"}} />
             <p className="music-title">{name}</p>
             <p className="music-duration">{time}</p>
         </div>
