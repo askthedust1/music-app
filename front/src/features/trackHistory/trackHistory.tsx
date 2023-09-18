@@ -15,9 +15,6 @@ const TrackHistory = () => {
     const loading = useAppSelector(selectHistoryLoading);
     const user = useAppSelector(selectUser);
 
-    if (!user) {
-        navigate('/');
-    }
     useEffect( () => {
         if (!user) {
             navigate('/');
@@ -36,7 +33,7 @@ const TrackHistory = () => {
                     {history?.map((item, index) => (
                         <div className="tracksList" key={index}>
                             <p className="tracksList-track">{item.track.name}</p>
-                            <p className="tracksList-artist">{item.artist}</p>
+                            <p className="tracksList-artist">{item.artist.name}</p>
                             <p className="tracksList-time">{dayjs(item.datetime).format('DD.MM.YYYY HH:mm:ss')}</p>
                         </div>
                     ))}

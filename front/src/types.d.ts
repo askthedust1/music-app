@@ -106,7 +106,9 @@ export interface IHistory {
     track: {
         name: string;
     };
-    artist: string;
+    artist: {
+        name: string
+    };
     user: string;
     datetime: string;
 }

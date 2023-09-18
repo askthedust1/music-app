@@ -22,7 +22,6 @@ const Tracks = () => {
     const [track, setTrack] = useState<ITrackFull | null>(null);
 
     const open = async (track: ITrackFull) => {
-        console.log('Opening modal with track:', track);
         if (user) {
             await dispatch(createHistory({track: track._id}));
         } else {

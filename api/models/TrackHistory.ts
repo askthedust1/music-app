@@ -18,8 +18,14 @@ const TrackHistorySchema = new Schema({
         }
     },
     artist: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'Artist',
         required: true,
+        validate: {
+            validator: async (value: mongoose.Types.ObjectId) =>
+                await Artist.findById(value),
+            message: 'Artist not find!'
+        }
     },
     user: {
         type: Schema.Types.ObjectId,

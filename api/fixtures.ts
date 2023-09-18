@@ -1,8 +1,11 @@
 import mongoose from "mongoose";
+import crypto from "crypto";
 import config from "./config";
 import Artist from "./models/Artist";
 import Album from "./models/Album";
 import Track from "./models/Track";
+import User from "./models/User";
+import TrackHistory from "./models/TrackHistory";
 
 
 const run = async () => {
@@ -67,13 +70,33 @@ const run = async () => {
         artist: artistFlorence._id
     });
 
-    await Track.create({
+    const [track1, track2, track3, track4] = await Track.create({
         name: 'This Picture',
         album: placeboAlbum1._id,
         time: '3:34',
         number: 1,
         youtube: 'x7mOxdEDNn8'
     }, {
+        name: '3WWW',
+        album: altjAlbum1._id,
+        time: '5:00',
+        number: 1,
+        youtube: 'ZwBkXgWNs_M'
+    }, {
+        name: 'Angel',
+        album: massiveAlbum1._id,
+        time: '6:18',
+        number: 1,
+        youtube: 'xiK2JlBpzvI'
+    }, {
+        name: 'Never Let Me Go',
+        album: florenceAlbum1._id,
+        time: '4:31',
+        number: 3,
+        youtube: 'zMBTvuUlm98'
+    });
+
+    await Track.create({
         name: 'Sleeping with Ghosts',
         album: placeboAlbum1._id,
         time: '4:38',
@@ -127,12 +150,6 @@ const run = async () => {
         time: '6:07',
         number: 5,
         youtube: '3hTFcwdyWX4'
-    }, {
-        name: '3WWW',
-        album: altjAlbum1._id,
-        time: '5:00',
-        number: 1,
-        youtube: 'ZwBkXgWNs_M'
     }, {
         name: 'In Cold Blood',
         album: altjAlbum1._id,
@@ -188,12 +205,6 @@ const run = async () => {
         number: 5,
         youtube: 'dCCXq9QB-dQ'
     }, {
-        name: 'Angel',
-        album: massiveAlbum1._id,
-        time: '6:18',
-        number: 1,
-        youtube: 'xiK2JlBpzvI'
-    }, {
         name: 'Teardrop',
         album: massiveAlbum1._id,
         time: '5:29',
@@ -211,12 +222,58 @@ const run = async () => {
         time: '3:11',
         number: 2,
         youtube: '5GHXEGz3PJg'
+    });
+
+    const [user, userTest] = await User.create({
+        username: 'vikaa',
+        password: 'victoria',
+        token: crypto.randomUUID(),
     }, {
-        name: 'Never Let Me Go',
-        album: florenceAlbum1._id,
-        time: '4:31',
-        number: 3,
-        youtube: 'zMBTvuUlm98'
+        username: 'somebodyy',
+        password: '1234567',
+        token: crypto.randomUUID(),
+    });
+
+    await TrackHistory.create({
+        track: track1._id,
+        artist: artistPlacebo,
+        user: user._id,
+        datetime: "2023-09-18T06:33:16.817Z"
+    }, {
+        track: track2._id,
+        artist: artistAltJ,
+        user: user._id,
+        datetime: "2023-09-15T09:45:16.817Z"
+    }, {
+        track: track3._id,
+        artist: artistMassive,
+        user: user._id,
+        datetime: "2023-09-17T23:53:16.817Z"
+    }, {
+        track: track4._id,
+        artist: artistFlorence,
+        user: user._id,
+        datetime: "2023-09-01T03:03:16.817Z"
+    }, {
+        track: track2._id,
+        artist: artistAltJ,
+        user: userTest._id,
+        datetime: "2023-09-02T01:20:16.817Z"
+    }, {
+        track: track4._id,
+        artist: artistFlorence,
+        user: userTest._id,
+        datetime: "2023-09-10T06:33:16.817Z"
+    }, {
+        track: track4._id,
+        artist: artistFlorence,
+        user: userTest._id,
+        datetime: "2023-09-16T19:15:16.817Z"
+    }, {
+        track: track3._id,
+        artist: artistMassive,
+        user: userTest._id,
+        datetime: "2023-09-11T07:33:16.817Z"
     });
 
 

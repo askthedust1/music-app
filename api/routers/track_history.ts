@@ -13,7 +13,8 @@ trackHistoryRouter.get('/', auth, async (req, res) => {
     try {
         const result = await TrackHistory.find({'user': user._id})
             .sort({datetime: -1})
-            .populate('track');
+            .populate({path: 'track', select: 'name'})
+            .populate({path: 'artist', select: 'name'});
         return res.send(result);
     } catch (e) {
         return res.sendStatus(500);
@@ -33,7 +34,7 @@ trackHistoryRouter.post('/', auth, async (req, res, next) => {
             const history = new TrackHistory({
                 track: req.body.track,
                 user: user._id,
-                artist: artist[0].name,
+                artist: artist[0]._id,
                 datetime: new Date().toISOString(),
             });
             await history.save();
