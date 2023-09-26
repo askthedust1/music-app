@@ -33,9 +33,10 @@ export interface IAlbumNew {
 }
 
 export interface IUser {
-    _id: string;
     username: string;
     password: string;
+    name: string;
     token: string;
+    role: string;
 }
 

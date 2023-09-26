@@ -230,10 +230,12 @@ const run = async () => {
         username: 'vikaa',
         password: 'victoria',
         token: crypto.randomUUID(),
+        role: "admin"
     }, {
-        username: 'somebodyy',
-        password: '1234567',
+        username: 'gosling',
+        password: 'gosling',
         token: crypto.randomUUID(),
+        role: "user"
     });
 
     await TrackHistory.create({

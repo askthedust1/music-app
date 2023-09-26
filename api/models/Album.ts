@@ -22,6 +22,11 @@ const AlbumSchema = new Schema({
             validator: async (value: mongoose.Types.ObjectId) => await Artist.findById(value),
             message: 'Artist not find!'
         }
+    },
+    isPublished: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
