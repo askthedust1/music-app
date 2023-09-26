@@ -38,3 +38,4 @@ export interface IUser {
     password: string;
     token: string;
 }
+

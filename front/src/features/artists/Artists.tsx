@@ -21,10 +21,10 @@ const Artists = () => {
                 loading ? <SpinnerLoading/>
                     :
                     <div className="cards">
-                        {artists.map((item, index) => (
+                        {artists.map((item) => (
                             <ArtistsItem
                                 _id={item._id}
-                                key={index}
+                                key={item._id}
                                 image={item.image}
                                 name={item.name}
                             />

@@ -13,7 +13,7 @@ albumsRouter.get('/', async (req, res) => {
         if (req.query.artist) {
             const queryId = req.query.artist as string;
             const albums = await Album.find({'artist': queryId}).sort({date: -1});
-            const artist = await Artist.find({'_id': queryId});
+            const artist = await Artist.findById(queryId).select('name');
 
             const newAlbums: IAlbumNew[] = [];
 

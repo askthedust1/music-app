@@ -17,27 +17,10 @@ export interface IAlbumFull {
 
 export interface IAlbumType {
     newAlbums: IAlbumFull[],
-    artist: IArtistFull[]
-}
-
-export interface IAlbum {
-    _id: string;
-    name: string;
-    image: string | null;
-    date: number;
-    artist: string;
-}
-
-export interface IAlbumFull {
-    _id: string;
-    name: string;
-    image: string | null;
-    date: number;
     artist: {
         _id: string;
         name: string;
-    };
-    trackAmount: number;
+    }
 }
 
 export interface IType {
@@ -62,6 +45,11 @@ export interface ITrackFull {
     time: string;
     number: number;
     youtube: string;
+}
+
+export interface IUser {
+    name: string;
+    token: string;
 }
 
 export interface User {

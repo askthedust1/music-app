@@ -29,7 +29,7 @@ const run = async () => {
     }, {
         name: 'Alt-J',
         description: 'indie rock',
-        image: 'fixtures/Alt-j.jpeg'
+        image: 'fixtures/Alt-J.jpeg'
     }, {
         name: 'Massive Attack',
         description: 'trip hop',

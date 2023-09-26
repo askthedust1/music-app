@@ -25,12 +25,12 @@ const Albums = () => {
                     loading ? <SpinnerLoading/>
                         :
                         <div>
-                            <h1 className="artist">{albums?.artist[0].name}</h1>
+                            <h1 className="artist">{albums?.artist.name}</h1>
                             <div className="cards" style={{marginBottom:'30px'}}>
-                                {albums?.newAlbums.map((item, index) => (
+                                {albums?.newAlbums.map((item) => (
                                     <AlbumsItem
                                         _id={item._id}
-                                        key={index}
+                                        key={item._id}
                                         image={item.image}
                                         name={item.name}
                                         date={item.date}
