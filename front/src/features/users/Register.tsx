@@ -14,6 +14,7 @@ const Register = () => {
     const [state, setState] = useState<RegisterMutation>({
         username: '',
         password: '',
+        name: ''
     });
 
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,6 +69,18 @@ const Register = () => {
                                 onChange={inputChangeHandler}
                                 error={Boolean(getFieldError('username'))}
                                 helperText={getFieldError('username')}
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <TextField
+                                sx={{width: '100%', background: 'white', borderRadius: 2}}
+                                label="Name"
+                                name="name"
+                                autoComplete="new-name"
+                                value={state.name}
+                                onChange={inputChangeHandler}
+                                error={!!getFieldError('name')}
+                                helperText={getFieldError('name')}
                             />
                         </Grid>
                         <Grid item xs={12}>

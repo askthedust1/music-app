@@ -8,7 +8,14 @@ import Nav from "./components/Nav/Nav";
 import Register from './features/users/Register';
 import Login from './features/users/Login';
 import TrackHistory from "./features/trackHistory/trackHistory";
-function App() {
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import {useAppSelector} from "./app/hook";
+import {selectUser} from "./features/users/usersSlice";
+import {userRoles} from "./constants";
+import ArtistForm from "./features/artists/ArtistForm/ArtistForm";
+const App = () => {
+  const user = useAppSelector(selectUser);
+
   return (
     <div className="App">
         <Nav/>
@@ -20,10 +27,15 @@ function App() {
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>} />
                 <Route path="/tracks_history" element={<TrackHistory/>} />
+                <Route path="/add_artist" element={(
+                    <ProtectedRoute isAllowed={user && user.role === userRoles.user}>
+                        <ArtistForm/>
+                    </ProtectedRoute>
+                )}/>
             </Routes>
         </div>
     </div>
   );
-}
+};
 
 export default App;

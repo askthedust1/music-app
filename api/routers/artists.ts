@@ -4,7 +4,7 @@ import {imagesUpload} from "../multer";
 import mongoose from "mongoose";
 import {IArtist} from "../types";
 import permit from "../middleware/permit";
-import auth, {RequestWithUser} from "../middleware/auth";
+import auth from "../middleware/auth";
 import config from "../config";
 import fs from 'fs';
 
@@ -32,6 +32,29 @@ artistsRouter.post('/', auth, permit('admin', 'user'), imagesUpload.single('imag
     try {
         await artist.save();
         return res.send(artist);
+    } catch (e) {
+        if (e instanceof mongoose.Error.ValidationError) {
+            return res.status(400).send(e);
+        }
+
+        next(e);
+
+    }
+
+});
+
+artistsRouter.patch('/:id/togglePublished', auth, permit('admin'), async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const artist = await Artist.findById(id);
+
+        if (!artist) {
+            return res.status(404).send('Not found!');
+        }
+
+        const toggle = await Artist.findOneAndUpdate({_id: id}, {isPublished: !artist.isPublished});
+
+        return res.send(toggle);
     } catch (e) {
         if (e instanceof mongoose.Error.ValidationError) {
             return res.status(400).send(e);

@@ -4,8 +4,10 @@ import Track from "../models/Track";
 import {ITrack} from "../types";
 import Album from "../models/Album";
 import permit from "../middleware/permit";
-import auth, {RequestWithUser} from "../middleware/auth";
+import auth from "../middleware/auth";
 import albumsRouter from "./albums";
+import {imagesUpload} from "../multer";
+import Artist from "../models/Artist";
 
 const tracksRouter = express.Router();
 
@@ -44,6 +46,29 @@ tracksRouter.post('/', auth, permit('admin', 'user'), async (req, res, next) => 
             return res.status(400).send(e);
         }
         next(e);
+    }
+
+});
+
+tracksRouter.patch('/:id/togglePublished', auth, permit('admin'), async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const track = await Track.findById(id);
+
+        if (!track) {
+            return res.status(404).send('Not found!');
+        }
+
+        const toggle = await Artist.findOneAndUpdate({_id: id}, {isPublished: !track.isPublished});
+
+        return res.send(toggle);
+    } catch (e) {
+        if (e instanceof mongoose.Error.ValidationError) {
+            return res.status(400).send(e);
+        }
+
+        next(e);
+
     }
 
 });

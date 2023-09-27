@@ -30,8 +30,8 @@ const TrackHistory = () => {
             {loading ? <SpinnerLoading/>
                 :
                 <div>
-                    {history?.map((item, index) => (
-                        <div className="tracksList" key={index}>
+                    {history?.map((item) => (
+                        <div className="tracksList" key={item._id}>
                             <p className="tracksList-track">{item.track.name}</p>
                             <p className="tracksList-artist">{item.artist.name}</p>
                             <p className="tracksList-time">{dayjs(item.datetime).format('DD.MM.YYYY HH:mm:ss')}</p>

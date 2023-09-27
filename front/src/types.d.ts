@@ -5,6 +5,12 @@ export interface IArtistFull {
     image: string | null;
 }
 
+export interface ArtistMutation {
+    name: string;
+    description: string;
+    image: string | null;
+}
+
 
 export interface IAlbumFull {
     _id: string;
@@ -47,15 +53,11 @@ export interface ITrackFull {
     youtube: string;
 }
 
-export interface IUser {
-    name: string;
-    token: string;
-}
-
 export interface User {
     _id: string;
     username: string;
     token: string;
+    role: string;
 }
 
 export interface RegisterResponse {
@@ -78,6 +80,7 @@ export interface ValidationError {
 export interface RegisterMutation {
     username: string;
     password: string;
+    name: string;
 }
 
 export interface LoginMutation {

@@ -16,7 +16,10 @@ const UserMenu: React.FC<IProps> = ({ user }) => {
         <ul>
             <b className="list" style={{color: '#00E20B'}}>Hello, {user.username}!</b>
             <NavLink className="list" to="/">Home</NavLink>
-            <NavLink className="list" to="/add_post">Add new</NavLink>
+            <NavLink className="list" to="/tracks_history">Track History</NavLink>
+            <NavLink className="list" to="/add_artist">Add artist</NavLink>
+            <NavLink className="list" to="/add_album">Add album</NavLink>
+            <NavLink className="list" to="/add_track">Add track</NavLink>
             <li className="list" onClick={handleLogout}>Log Out</li>
         </ul>
     );

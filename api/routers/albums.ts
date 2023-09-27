@@ -9,6 +9,7 @@ import permit from "../middleware/permit";
 import auth, {RequestWithUser} from "../middleware/auth";
 import config from "../config";
 import fs from "fs";
+import artistsRouter from "./artists";
 
 const albumsRouter = express.Router();
 
@@ -63,6 +64,29 @@ albumsRouter.post('/', auth, permit('admin', 'user'), imagesUpload.single('image
     try {
         await album.save();
         return res.send(album);
+    } catch (e) {
+        if (e instanceof mongoose.Error.ValidationError) {
+            return res.status(400).send(e);
+        }
+
+        next(e);
+
+    }
+
+});
+
+albumsRouter.patch('/:id/togglePublished', auth, permit('admin'), async (req, res, next) => {
+    try {
+        const id = req.params.id;
+        const album = await Album.findById(id);
+
+        if (!album) {
+            return res.status(404).send('Not found!');
+        }
+
+        const toggle = await Artist.findOneAndUpdate({_id: id}, {isPublished: !album.isPublished});
+
+        return res.send(toggle);
     } catch (e) {
         if (e instanceof mongoose.Error.ValidationError) {
             return res.status(400).send(e);
