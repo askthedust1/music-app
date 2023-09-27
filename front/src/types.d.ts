@@ -60,6 +60,14 @@ export interface ITrackFull {
     youtube: string;
 }
 
+export interface TrackMutation {
+    name: string;
+    album: string;
+    time: string;
+    number: string;
+    youtube: string;
+}
+
 export interface User {
     _id: string;
     username: string;

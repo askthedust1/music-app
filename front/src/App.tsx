@@ -14,6 +14,7 @@ import {selectUser} from "./features/users/usersSlice";
 import {userRoles} from "./constants";
 import ArtistForm from "./features/artists/ArtistForm/ArtistForm";
 import AlbumsForm from "./features/albums/AlbumsForm/AlbumsForm";
+import TracksForm from "./features/tracks/TracksForm/TracksForm";
 const App = () => {
   const user = useAppSelector(selectUser);
 
@@ -37,6 +38,12 @@ const App = () => {
                 <Route path="/add_album" element={(
                     <ProtectedRoute isAllowed={user && user.role === userRoles.user}>
                         <AlbumsForm/>
+                    </ProtectedRoute>
+                )}/>
+
+                <Route path="/add_track" element={(
+                    <ProtectedRoute isAllowed={user && user.role === userRoles.user}>
+                        <TracksForm/>
                     </ProtectedRoute>
                 )}/>
             </Routes>

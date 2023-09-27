@@ -2,7 +2,6 @@ import {IAlbumType} from "../../types";
 import {createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store";
 import {createAlbum, fetchAlbums} from "./albumsThunk";
-import {createArtist} from "../artists/artistsThunk";
 
 interface AlbumsState {
     albums: IAlbumType | null;

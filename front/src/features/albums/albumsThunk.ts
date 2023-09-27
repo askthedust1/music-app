@@ -1,8 +1,16 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {AlbumMutation, ArtistMutation, IAlbumType} from "../../types";
+import {AlbumMutation, IAlbumType} from "../../types";
 import axiosApi from "../../axiosApi";
 
 export const fetchAlbums = createAsyncThunk(
+    'albums/fetchAll',
+    async(id: string) => {
+        const albumResponse = await axiosApi.get<IAlbumType | null>(`/albums?artist=${id}`);
+        return albumResponse.data;
+    }
+);
+
+export const fetchAllAlbums = createAsyncThunk(
     'albums/fetchAll',
     async(id: string) => {
         const albumResponse = await axiosApi.get<IAlbumType | null>(`/albums?artist=${id}`);

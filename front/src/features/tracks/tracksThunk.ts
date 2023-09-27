@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axiosApi from "../../axiosApi";
-import { IType} from "../../types";
+import {IType, TrackMutation} from "../../types";
 
 
 export const fetchTracks = createAsyncThunk(
@@ -8,5 +8,12 @@ export const fetchTracks = createAsyncThunk(
     async(id: string) => {
         const tracksResponse = await axiosApi.get<IType>(`/tracks?album=${id}`);
         return tracksResponse.data;
+    }
+);
+
+export const createTrack = createAsyncThunk(
+    'tracks/create',
+    async (trackMutation: TrackMutation) => {
+        await axiosApi.post('/tracks', trackMutation);
     }
 );

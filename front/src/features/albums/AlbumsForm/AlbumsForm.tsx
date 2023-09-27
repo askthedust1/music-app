@@ -69,7 +69,7 @@ const AlbumsForm = () => {
             onSubmit={submitFormHandler}
             style={{width: '50%'}}
         >
-            <h2 style={{color: 'white'}}>Add artist</h2>
+            <h2 style={{color: 'white'}}>Add album</h2>
             <Grid container direction="column" spacing={2}>
                 <Grid item xs>
                     <TextField
