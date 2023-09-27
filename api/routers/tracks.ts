@@ -19,9 +19,18 @@ tracksRouter.get('/', async (req, res) => {
             const artist = await Album.findById({'_id': result[0].album._id}).populate('artist');
             return res.send({ result, artist});
         } else {
-            const result = await Track.find();
+            const result = await Track.find({isPublished: true});
             return res.send(result);
         }
+    } catch {
+        return res.sendStatus(500);
+    }
+});
+
+tracksRouter.get('/admin', auth, permit('admin'), async (req, res) => {
+    try {
+        const result = await Track.find().populate({path: 'album', select: 'name'});
+        return res.send(result);
     } catch {
         return res.sendStatus(500);
     }

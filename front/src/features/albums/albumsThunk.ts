@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {AlbumMutation, IAlbumType} from "../../types";
+import {AlbumMutation, IAlbumAdmin, IAlbumFull, IAlbumType} from "../../types";
 import axiosApi from "../../axiosApi";
 
 export const fetchAlbums = createAsyncThunk(
@@ -10,10 +10,10 @@ export const fetchAlbums = createAsyncThunk(
     }
 );
 
-export const fetchAllAlbums = createAsyncThunk(
-    'albums/fetchAll',
-    async(id: string) => {
-        const albumResponse = await axiosApi.get<IAlbumType | null>(`/albums?artist=${id}`);
+export const fetchAdminAlbums = createAsyncThunk(
+    'albums/fetchAdmin',
+    async() => {
+        const albumResponse = await axiosApi.get<IAlbumAdmin[]>(`/albums/admin`);
         return albumResponse.data;
     }
 );

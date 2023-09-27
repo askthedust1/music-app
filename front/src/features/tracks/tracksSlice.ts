@@ -2,7 +2,6 @@ import {createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store";
 import { IType} from "../../types";
 import {createTrack, fetchTracks} from "./tracksThunk";
-import {createArtist} from "../artists/artistsThunk";
 
 interface TracksState {
     tracks: IType | null;

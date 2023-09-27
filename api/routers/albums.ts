@@ -28,9 +28,18 @@ albumsRouter.get('/', async (req, res) => {
             }
             return res.send({newAlbums, artist});
         } else {
-            const result = await Album.find();
+            const result = await Album.find({isPublished: true});
             return res.send(result);
         }
+    } catch {
+        return res.sendStatus(500);
+    }
+});
+
+albumsRouter.get('/admin', auth, permit('admin'), async (req, res) => {
+    try {
+        const result = await Album.find().populate({path: 'artist', select: 'name'});
+        return res.send(result);
     } catch {
         return res.sendStatus(500);
     }

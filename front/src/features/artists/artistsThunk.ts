@@ -10,6 +10,14 @@ export const fetchArtists = createAsyncThunk<IArtistFull[]>(
     }
 );
 
+export const fetchArtistsAdmin = createAsyncThunk<IArtistFull[]>(
+    'artists/fetchAdmin',
+    async() => {
+        const artistsResponse = await axiosApi.get<IArtistFull[]>('/artists/admin');
+        return artistsResponse.data;
+    }
+);
+
 export const createArtist = createAsyncThunk(
     'artists/create',
     async (artistMutation: ArtistMutation) => {

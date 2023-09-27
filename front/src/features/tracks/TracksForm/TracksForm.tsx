@@ -7,7 +7,7 @@ import {selectUser} from "../../users/usersSlice";
 import {TrackMutation} from "../../../types";
 import {fetchArtists} from "../../artists/artistsThunk";
 import {fetchAlbums} from "../../albums/albumsThunk";
-import {CircularProgress, Grid, MenuItem, TextField} from "@mui/material";
+import {CircularProgress, Grid, TextField} from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SendIcon from "@mui/icons-material/Send";
 import {createTrack} from "../tracksThunk";

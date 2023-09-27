@@ -15,6 +15,7 @@ import {userRoles} from "./constants";
 import ArtistForm from "./features/artists/ArtistForm/ArtistForm";
 import AlbumsForm from "./features/albums/AlbumsForm/AlbumsForm";
 import TracksForm from "./features/tracks/TracksForm/TracksForm";
+import Admin from "./features/Admin/Admin";
 const App = () => {
   const user = useAppSelector(selectUser);
 
@@ -44,6 +45,12 @@ const App = () => {
                 <Route path="/add_track" element={(
                     <ProtectedRoute isAllowed={user && user.role === userRoles.user}>
                         <TracksForm/>
+                    </ProtectedRoute>
+                )}/>
+
+                <Route path="/admin" element={(
+                    <ProtectedRoute isAllowed={user && user.role === userRoles.admin}>
+                        <Admin/>
                     </ProtectedRoute>
                 )}/>
             </Routes>

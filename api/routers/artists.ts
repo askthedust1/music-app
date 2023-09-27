@@ -12,6 +12,15 @@ const artistsRouter = express.Router();
 
 artistsRouter.get('/', async (req, res) => {
     try {
+        const result = await Artist.find({isPublished: true});
+        return res.send(result);
+    } catch {
+        return res.sendStatus(500);
+    }
+});
+
+artistsRouter.get('/admin', auth, permit('admin'), async (req, res) => {
+    try {
         const result = await Artist.find();
         return res.send(result);
     } catch {
