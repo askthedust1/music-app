@@ -21,6 +21,13 @@ export interface IAlbumFull {
     trackAmount: number;
 }
 
+export interface AlbumMutation {
+    name: string;
+    image: string | null;
+    artist: string;
+    date: string;
+}
+
 export interface IAlbumType {
     newAlbums: IAlbumFull[],
     artist: {

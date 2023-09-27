@@ -1,38 +1,43 @@
 import React, {useEffect, useState} from 'react';
-import {Grid, TextField} from "@mui/material";
+import {CircularProgress, Grid, MenuItem, TextField} from "@mui/material";
 import LoadingButton from '@mui/lab/LoadingButton';
 import SendIcon from '@mui/icons-material/Send';
 import FileInput from '../../../components/FileInput/FileInput';
 import {useAppDispatch, useAppSelector} from "../../../app/hook";
 import {useNavigate} from "react-router-dom";
-import {ArtistMutation} from "../../../types";
+import {AlbumMutation} from "../../../types";
 import {selectUser} from "../../users/usersSlice";
-import {selectArtistsCreateLoading} from "../artistsSlice";
-import {createArtist} from "../artistsThunk";
-
-const ArtistForm = () => {
+import {selectAlbumCreateLoading} from "../albumsSlice";
+import {createAlbum} from "../albumsThunk";
+import {selectArtists, selectLoading} from "../../artists/artistsSlice";
+import {fetchArtists} from "../../artists/artistsThunk";
+const AlbumsForm = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const loading = useAppSelector(selectArtistsCreateLoading);
+    const artists = useAppSelector(selectArtists);
+    const loading = useAppSelector(selectAlbumCreateLoading);
     const user = useAppSelector(selectUser);
+    const loadingArtist = useAppSelector(selectLoading);
 
-    const [state, setState] = useState<ArtistMutation>({
+    const [state, setState] = useState<AlbumMutation>({
         name: '',
-        description: '',
+        artist: '',
         image: null,
+        date: ''
     });
 
     useEffect(() => {
         if (!user) {
             navigate('/login');
         }
+        dispatch(fetchArtists());
     }, [dispatch, navigate, user]);
 
     const submitFormHandler = async (e: React.FormEvent) => {
         e.preventDefault();
 
         try {
-            await dispatch(createArtist(state)).unwrap();
+            await dispatch(createAlbum(state)).unwrap();
             navigate('/');
         } catch (e) {
             alert('Invalid field');
@@ -58,7 +63,7 @@ const ArtistForm = () => {
         }
     };
 
-    return (
+    return !loadingArtist ? (
         <form
             autoComplete="off"
             onSubmit={submitFormHandler}
@@ -70,7 +75,25 @@ const ArtistForm = () => {
                     <TextField
                         required
                         sx={{width: '100%', background: 'white', borderRadius: 2}}
-                        id="name" label="Artist Name"
+                        select
+                        label="Artist"
+                        value={state.artist}
+                        onChange={inputChangeHandler}
+                        name="artist"
+                    >
+                        <MenuItem value="" disabled>Please select artist</MenuItem>
+                        {artists.map((item) => (
+                            <MenuItem key={item._id} value={item._id}>
+                                { item.name }
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                </Grid>
+                <Grid item xs>
+                    <TextField
+                        required
+                        sx={{width: '100%', background: 'white', borderRadius: 2}}
+                        id="name" label="Album Name"
                         value={state.name}
                         onChange={inputChangeHandler}
                         name="name"
@@ -79,12 +102,12 @@ const ArtistForm = () => {
 
                 <Grid item xs>
                     <TextField
+                        required
                         sx={{width: '100%', background: 'white', borderRadius: 2}}
-                        multiline rows={3}
-                        id="description" label="Description"
-                        value={state.description}
+                        id="date" label="Album`s year"
+                        value={state.date}
                         onChange={inputChangeHandler}
-                        name="description"
+                        name="date"
                     />
                 </Grid>
 
@@ -109,7 +132,7 @@ const ArtistForm = () => {
                 </Grid>
             </Grid>
         </form>
-    );
+    ) : <CircularProgress />;
 };
 
-export default ArtistForm;
+export default AlbumsForm;
