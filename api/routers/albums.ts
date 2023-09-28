@@ -120,6 +120,7 @@ albumsRouter.delete('/:id', auth, permit('admin'), async (req, res) => {
         //     return res.status(403).send('Error!');
         // }
 
+        await Track.deleteMany({'album': id});
         await Album.findByIdAndRemove(id);
         // const filePath = config.publicPath + '/' + album.image;
         // fs.unlinkSync(filePath);

@@ -5,8 +5,8 @@ import mongoose from "mongoose";
 import {IArtist} from "../types";
 import permit from "../middleware/permit";
 import auth from "../middleware/auth";
-import config from "../config";
-import fs from 'fs';
+import Album from "../models/Album";
+import Track from "../models/Track";
 
 const artistsRouter = express.Router();
 
@@ -84,13 +84,21 @@ artistsRouter.delete('/:id', auth, permit('admin'), async (req, res) => {
             return res.status(404).send('Not Found!');
         }
 
+        const albums = await Album.find({'artist': id});
+
+        for (const album of albums) {
+            await Track.deleteMany({'album': album._id});
+        }
+
         // if (user._id.toString() !== artist.user.toString()) {
         //     return res.status(403).send('Error!');
         // }
 
+        await Album.deleteMany({'artist': id});
         await Artist.findByIdAndRemove(id);
-        const filePath = config.publicPath + '/' + artist.image;
-        fs.unlinkSync(filePath);
+
+        // const filePath = config.publicPath + '/' + artist.image;
+        // fs.unlinkSync(filePath);
 
         res.send('Deleted');
     } catch (e) {
