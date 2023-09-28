@@ -84,15 +84,28 @@ export interface TrackMutation {
     youtube: string;
 }
 
-export interface User {
+export interface RegisterMutation {
+    username: string;
+    password: string;
+    name: string;
+}
+
+export interface LoginMutation {
+    username: string;
+    password: string;
+}
+
+export interface IUser {
     _id: string;
     username: string;
+    password: string;
+    name: string;
     token: string;
     role: string;
 }
 
 export interface RegisterResponse {
-    user: User;
+    user: IUser;
     message: string;
 }
 
@@ -106,17 +119,6 @@ export interface ValidationError {
     message: string,
     name: string,
     _message: string,
-}
-
-export interface RegisterMutation {
-    username: string;
-    password: string;
-    name: string;
-}
-
-export interface LoginMutation {
-    username: string;
-    password: string;
 }
 
 export interface GlobalError {

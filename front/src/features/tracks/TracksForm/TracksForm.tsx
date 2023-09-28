@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../../app/hook";
 import {useNavigate} from "react-router-dom";
 import {selectArtists, selectLoading} from "../../artists/artistsSlice";
-import {selectAlbumCreateLoading, selectAlbums} from "../../albums/albumsSlice";
+import {selectAlbums} from "../../albums/albumsSlice";
 import {selectUser} from "../../users/usersSlice";
 import {TrackMutation} from "../../../types";
 import {fetchArtists} from "../../artists/artistsThunk";
@@ -11,13 +11,14 @@ import {CircularProgress, Grid, TextField} from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SendIcon from "@mui/icons-material/Send";
 import {createTrack} from "../tracksThunk";
+import {selectCreateTrack} from "../tracksSlice";
 
 const TracksForm = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const artists = useAppSelector(selectArtists);
     const albums = useAppSelector(selectAlbums);
-    const loading = useAppSelector(selectAlbumCreateLoading);
+    const loading = useAppSelector(selectCreateTrack);
     const user = useAppSelector(selectUser);
     const loadingArtist = useAppSelector(selectLoading);
 
@@ -74,6 +75,7 @@ const TracksForm = () => {
                     <select
                         name="artist"
                         id="artist"
+                        style={{width: '100%', padding: '10px 10px', borderRadius: '5px'}}
                         value={artistId}
                         onChange={inputArtistHandler}
                         required
@@ -86,9 +88,12 @@ const TracksForm = () => {
                             {artist.name}
                         </option>)}
                     </select>
+                </Grid>
+                <Grid item xs>
                     <select
                         name="album"
                         id="album"
+                        style={{width: '100%', padding: '10px 10px', borderRadius: '5px'}}
                         value={state.album}
                         onChange={inputChangeHandler}
                         disabled={!artistId}

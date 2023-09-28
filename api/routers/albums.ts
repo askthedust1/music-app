@@ -116,14 +116,10 @@ albumsRouter.delete('/:id', auth, permit('admin'), async (req, res) => {
             return res.status(404).send('Not Found!');
         }
 
-        // if (user._id.toString() !== artist.user.toString()) {
-        //     return res.status(403).send('Error!');
-        // }
-
         await Track.deleteMany({'album': id});
         await Album.findByIdAndRemove(id);
-        // const filePath = config.publicPath + '/' + album.image;
-        // fs.unlinkSync(filePath);
+        const filePath = config.publicPath + '/' + album.image;
+        fs.unlinkSync(filePath);
 
         res.send('Deleted');
     } catch (e) {

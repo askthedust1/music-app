@@ -96,4 +96,8 @@ export const albumsReducer = AlbumsSlice.reducer;
 export const selectAlbums = (state: RootState) => state.albums.albums;
 export const selectAlbumsAdmin = (state: RootState) => state.albums.albumsAdmin;
 export const selectAlbumLoading = (state: RootState) => state.albums.fetchLoading;
+export const selectAlbumLoadingAdmin = (state: RootState) => state.albums.fetchLoadingAdmin;
+export const selectAlbumDel = (state: RootState) => state.albums.delLoading;
+export const selectAlbumPatch = (state: RootState) => state.albums.patchLoading;
+
 export const selectAlbumCreateLoading = (state: RootState) => state.albums.createLoading;

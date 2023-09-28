@@ -98,4 +98,7 @@ export const selectArtists = (state: RootState) => state.artists.artists;
 export const selectArtistsAdmin = (state: RootState) => state.artists.artistsAdmin;
 
 export const selectLoading = (state: RootState) => state.artists.fetchLoading;
+export const selectLoadingAdmin = (state: RootState) => state.artists.fetchLoadingAdmin;
+export const selectLoadingPatch = (state: RootState) => state.artists.patchLoading;
+export const selectLoadingDel = (state: RootState) => state.artists.delLoading;
 export const selectArtistsCreateLoading = (state: RootState) => state.artists.createLoading;

@@ -2,11 +2,11 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../app/hook';
 import { logout } from '../../features/users/usersThunk';
-import {User} from "../../types";
 import {userRoles} from "../../constants";
+import {IUser} from "../../types";
 
 interface IProps {
-    user: User;
+    user: IUser;
 }
 
 const UserMenu: React.FC<IProps> = ({ user }) => {
@@ -18,14 +18,9 @@ const UserMenu: React.FC<IProps> = ({ user }) => {
             <b className="list" style={{color: '#00E20B'}}>Hello, {user.username}!</b>
             <NavLink className="list" to="/">Home</NavLink>
             <NavLink className="list" to="/tracks_history">Track History</NavLink>
-            {
-                user.role === userRoles.user ? <>
-                    <NavLink className="list" to="/add_artist">Add artist</NavLink>
-                    <NavLink className="list" to="/add_album">Add album</NavLink>
-                    <NavLink className="list" to="/add_track">Add track</NavLink>
-                </> : null
-            }
-
+            <NavLink className="list" to="/add_artist">Add artist</NavLink>
+            <NavLink className="list" to="/add_album">Add album</NavLink>
+            <NavLink className="list" to="/add_track">Add track</NavLink>
             {
                 user.role === userRoles.admin ?
                     <>

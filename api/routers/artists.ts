@@ -7,6 +7,9 @@ import permit from "../middleware/permit";
 import auth from "../middleware/auth";
 import Album from "../models/Album";
 import Track from "../models/Track";
+import TrackHistory from "../models/TrackHistory";
+import config from "../config";
+import fs from "fs";
 
 const artistsRouter = express.Router();
 
@@ -90,15 +93,12 @@ artistsRouter.delete('/:id', auth, permit('admin'), async (req, res) => {
             await Track.deleteMany({'album': album._id});
         }
 
-        // if (user._id.toString() !== artist.user.toString()) {
-        //     return res.status(403).send('Error!');
-        // }
-
+        await TrackHistory.deleteMany({'artist': id});
         await Album.deleteMany({'artist': id});
         await Artist.findByIdAndRemove(id);
 
-        // const filePath = config.publicPath + '/' + artist.image;
-        // fs.unlinkSync(filePath);
+        const filePath = config.publicPath + '/' + artist.image;
+        fs.unlinkSync(filePath);
 
         res.send('Deleted');
     } catch (e) {

@@ -8,6 +8,7 @@ import auth from "../middleware/auth";
 import albumsRouter from "./albums";
 import {imagesUpload} from "../multer";
 import Artist from "../models/Artist";
+import TrackHistory from "../models/TrackHistory";
 
 const tracksRouter = express.Router();
 
@@ -91,9 +92,13 @@ albumsRouter.delete('/:id', auth, permit('admin'), async (req, res) => {
             return res.status(404).send('Not Found!');
         }
 
-        // if (user._id.toString() !== artist.user.toString()) {
-        //     return res.status(403).send('Error!');
-        // }
+        const history = await TrackHistory.findById({'track': id});
+
+        if (!history) {
+            return res.status(404).send('Not Found!');
+        }
+
+        await TrackHistory.deleteMany({'track': id});
 
         await Track.findByIdAndRemove(id);
 

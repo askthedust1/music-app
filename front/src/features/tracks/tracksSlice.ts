@@ -7,6 +7,7 @@ interface TracksState {
     tracks: IType | null;
     tracksAdmin: ITrackFull[];
     fetchLoading: boolean;
+    fetchLoadingAdmin: boolean;
     createLoading: boolean;
     patchLoading: boolean;
     delLoading: boolean;
@@ -16,6 +17,7 @@ const initialState: TracksState = {
     tracks: null,
     tracksAdmin: [],
     fetchLoading: false,
+    fetchLoadingAdmin: false,
     createLoading: false,
     patchLoading: false,
     delLoading: false
@@ -94,3 +96,7 @@ export const tracksReducer = TrackSlice.reducer;
 export const selectTracks = (state: RootState) => state.tracks.tracks;
 export const selectTracksAdmin = (state: RootState) => state.tracks.tracksAdmin;
 export const selectTracksLoading = (state: RootState) => state.tracks.fetchLoading;
+export const selectTracksLoadingAdmin = (state: RootState) => state.tracks.fetchLoadingAdmin;
+export const selectTracksLoadingDel = (state: RootState) => state.tracks.delLoading;
+export const selectTracksLoadingPatch = (state: RootState) => state.tracks.patchLoading;
+export const selectCreateTrack = (state: RootState) => state.tracks.createLoading;

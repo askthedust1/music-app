@@ -30,20 +30,21 @@ const App = () => {
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>} />
                 <Route path="/tracks_history" element={<TrackHistory/>} />
+
                 <Route path="/add_artist" element={(
-                    <ProtectedRoute isAllowed={user && user.role === userRoles.user}>
+                    <ProtectedRoute isAllowed={!!user}>
                         <ArtistForm/>
                     </ProtectedRoute>
                 )}/>
 
                 <Route path="/add_album" element={(
-                    <ProtectedRoute isAllowed={user && user.role === userRoles.user}>
+                    <ProtectedRoute isAllowed={!!user}>
                         <AlbumsForm/>
                     </ProtectedRoute>
                 )}/>
 
                 <Route path="/add_track" element={(
-                    <ProtectedRoute isAllowed={user && user.role === userRoles.user}>
+                    <ProtectedRoute isAllowed={!!user}>
                         <TracksForm/>
                     </ProtectedRoute>
                 )}/>
