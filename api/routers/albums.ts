@@ -17,7 +17,7 @@ albumsRouter.get('/', async (req, res) => {
     try {
         if (req.query.artist) {
             const queryId = req.query.artist as string;
-            const albums = await Album.find({'artist': queryId}).sort({date: -1});
+            const albums = await Album.find({$and: [{'artist': queryId}, {'isPublished': true}]}).sort({date: -1});
             const artist = await Artist.findById(queryId).select('name');
 
             const newAlbums: IAlbumNew[] = [];
@@ -93,7 +93,7 @@ albumsRouter.patch('/:id/togglePublished', auth, permit('admin'), async (req, re
             return res.status(404).send('Not found!');
         }
 
-        const toggle = await Artist.findOneAndUpdate({_id: id}, {isPublished: !album.isPublished});
+        const toggle = await Album.findOneAndUpdate({_id: id}, {isPublished: !album.isPublished});
 
         return res.send(toggle);
     } catch (e) {
@@ -121,8 +121,8 @@ albumsRouter.delete('/:id', auth, permit('admin'), async (req, res) => {
         // }
 
         await Album.findByIdAndRemove(id);
-        const filePath = config.publicPath + '/' + album.image;
-        fs.unlinkSync(filePath);
+        // const filePath = config.publicPath + '/' + album.image;
+        // fs.unlinkSync(filePath);
 
         res.send('Deleted');
     } catch (e) {

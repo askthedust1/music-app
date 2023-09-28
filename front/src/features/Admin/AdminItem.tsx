@@ -1,24 +1,24 @@
+import { Button } from '@mui/material';
 import React from 'react';
-import dayjs from "dayjs";
-import {useAppDispatch} from "../../app/hook";
 
 interface IProps {
     _id: string;
     name: string;
     title?: string;
     isPublished: boolean;
+    onToggle: (id: string) => void;
+    onDel: (id: string) => void;
 }
 
-const AdminItem: React.FC<IProps> = ({name, title, isPublished}) => {
-    const dispatch = useAppDispatch();
+const AdminItem: React.FC<IProps> = ({_id, name, title, isPublished, onToggle, onDel}) => {
 
     return (
         <div>
             <div className="tracksList">
                 <p className="tracksList-track">{name}</p>
                 <p className="tracksList-artist">{title}</p>
-                <p className="tracksList-time">{isPublished ? <button>Unpublish</button> : <button>Publish</button>}</p>
-                <button>Delete</button>
+                <Button onClick={() => onToggle(_id)} variant="outlined">{isPublished ? 'Unpublish' : 'Publish'}</Button>
+                <Button onClick={() => onDel(_id)} variant="outlined">Delete</Button>
             </div>
         </div>
     );

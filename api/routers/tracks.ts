@@ -15,11 +15,11 @@ tracksRouter.get('/', async (req, res) => {
     try {
         if (req.query.album) {
             const queryId = req.query.album as string;
-            const result = await Track.find({'album': queryId}).sort({number: 1});
+            const result = await Track.find({$and: [{'album': queryId}, {'isPublished': true}]}).sort({number: 1});
             const artist = await Album.findById({'_id': result[0].album._id}).populate('artist');
             return res.send({ result, artist});
         } else {
-            const result = await Track.find({isPublished: true});
+            const result = await Track.find();
             return res.send(result);
         }
     } catch {
@@ -68,7 +68,7 @@ tracksRouter.patch('/:id/togglePublished', auth, permit('admin'), async (req, re
             return res.status(404).send('Not found!');
         }
 
-        const toggle = await Artist.findOneAndUpdate({_id: id}, {isPublished: !track.isPublished});
+        const toggle = await Track.findOneAndUpdate({_id: id}, {isPublished: !track.isPublished});
 
         return res.send(toggle);
     } catch (e) {

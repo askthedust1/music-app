@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {AlbumMutation, IAlbumAdmin, IAlbumFull, IAlbumType} from "../../types";
+import {AlbumMutation, IAlbumAdmin, IAlbumType} from "../../types";
 import axiosApi from "../../axiosApi";
 
 export const fetchAlbums = createAsyncThunk(
@@ -15,6 +15,20 @@ export const fetchAdminAlbums = createAsyncThunk(
     async() => {
         const albumResponse = await axiosApi.get<IAlbumAdmin[]>(`/albums/admin`);
         return albumResponse.data;
+    }
+);
+
+export const delAlbums = createAsyncThunk(
+    'albums/delAlbums',
+    async(_id: string) => {
+        await axiosApi.delete(`/albums/${_id}`);
+    }
+);
+
+export const patchAlbums = createAsyncThunk(
+    'albums/patchAlbums',
+    async(_id: string) => {
+        await axiosApi.patch(`/albums/${_id}/togglePublished`);
     }
 );
 

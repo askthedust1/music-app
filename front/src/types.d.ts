@@ -66,10 +66,14 @@ export interface IType {
 export interface ITrackFull {
     _id: string;
     name: string;
-    album: IAlbum;
+    album: {
+        _id: string;
+        name: string;
+    };
     time: string;
     number: number;
     youtube: string;
+    isPublished: boolean;
 }
 
 export interface TrackMutation {

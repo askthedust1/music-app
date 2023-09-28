@@ -18,6 +18,20 @@ export const fetchArtistsAdmin = createAsyncThunk<IArtistFull[]>(
     }
 );
 
+export const patchArtists = createAsyncThunk(
+    'artists/patchArtists',
+    async(_id: string) => {
+        await axiosApi.patch(`/artists/${_id}/togglePublished`);
+    }
+);
+
+export const delArtists = createAsyncThunk(
+    'artists/delArtists',
+    async(_id: string) => {
+        await axiosApi.delete(`/artists/${_id}`);
+    }
+);
+
 export const createArtist = createAsyncThunk(
     'artists/create',
     async (artistMutation: ArtistMutation) => {

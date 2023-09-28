@@ -1,7 +1,7 @@
 import {IAlbumAdmin, IAlbumType} from "../../types";
 import {createSlice} from "@reduxjs/toolkit";
 import {RootState} from "../../app/store";
-import {createAlbum, fetchAdminAlbums, fetchAlbums} from "./albumsThunk";
+import {createAlbum, delAlbums, fetchAdminAlbums, fetchAlbums, patchAlbums} from "./albumsThunk";
 
 interface AlbumsState {
     albums: IAlbumType | null;
@@ -9,6 +9,8 @@ interface AlbumsState {
     fetchLoadingAdmin: boolean;
     fetchLoading: boolean;
     createLoading: boolean;
+    patchLoading: boolean;
+    delLoading: boolean;
 }
 
 const initialState: AlbumsState = {
@@ -17,6 +19,8 @@ const initialState: AlbumsState = {
     fetchLoadingAdmin: false,
     fetchLoading: false,
     createLoading: false,
+    patchLoading: false,
+    delLoading: false
 };
 
 export const AlbumsSlice = createSlice({
@@ -60,6 +64,30 @@ export const AlbumsSlice = createSlice({
 
         builder.addCase(fetchAdminAlbums.rejected, (state) => {
             state.fetchLoadingAdmin = false;
+        });
+
+        builder.addCase(patchAlbums.pending, (state) => {
+            state.patchLoading = true;
+        });
+
+        builder.addCase(patchAlbums.fulfilled, (state) => {
+            state.patchLoading = false;
+        });
+
+        builder.addCase(patchAlbums.rejected, (state) => {
+            state.patchLoading = false;
+        });
+
+        builder.addCase(delAlbums.pending, (state) => {
+            state.delLoading = true;
+        });
+
+        builder.addCase(delAlbums.fulfilled, (state) => {
+            state.delLoading = false;
+        });
+
+        builder.addCase(delAlbums.rejected, (state) => {
+            state.delLoading = false;
         });
     }
 });

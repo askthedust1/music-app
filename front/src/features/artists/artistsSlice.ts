@@ -1,6 +1,6 @@
 import {IArtistFull} from "../../types";
 import {createSlice} from "@reduxjs/toolkit";
-import {createArtist, fetchArtists, fetchArtistsAdmin} from "./artistsThunk";
+import {createArtist, delArtists, fetchArtists, fetchArtistsAdmin, patchArtists} from "./artistsThunk";
 import {RootState} from "../../app/store";
 
 interface ArtistsState {
@@ -9,6 +9,8 @@ interface ArtistsState {
     fetchLoadingAdmin: boolean,
     fetchLoading: boolean;
     createLoading: boolean;
+    patchLoading: boolean;
+    delLoading: boolean;
 }
 
 const initialState: ArtistsState = {
@@ -17,6 +19,8 @@ const initialState: ArtistsState = {
     fetchLoadingAdmin: false,
     fetchLoading: false,
     createLoading: false,
+    patchLoading: false,
+    delLoading: false
 };
 
 export const ArtistsSlice = createSlice({
@@ -61,6 +65,31 @@ export const ArtistsSlice = createSlice({
         builder.addCase(fetchArtistsAdmin.rejected, (state) => {
             state.fetchLoadingAdmin = false;
         });
+
+        builder.addCase(patchArtists.pending, (state) => {
+            state.patchLoading = true;
+        });
+
+        builder.addCase(patchArtists.fulfilled, (state) => {
+            state.patchLoading = false;
+        });
+
+        builder.addCase(patchArtists.rejected, (state) => {
+            state.patchLoading = false;
+        });
+
+        builder.addCase(delArtists.pending, (state) => {
+            state.delLoading = true;
+        });
+
+        builder.addCase(delArtists.fulfilled, (state) => {
+            state.delLoading = false;
+        });
+
+        builder.addCase(delArtists.rejected, (state) => {
+            state.delLoading = false;
+        });
+
     }
 });
 
