@@ -61,7 +61,7 @@ const run = async () => {
         image: 'fixtures/relaxer.jpg',
         date: 2017,
         artist: artistAltJ._id,
-        isPublished: true
+        isPublished: false
     }, {
         name: 'This Is All Yours',
         image: 'fixtures/this_is_all_yours.jpg',
@@ -79,7 +79,7 @@ const run = async () => {
         image: 'fixtures/ceremonials.jpeg',
         date: 2011,
         artist: artistFlorence._id,
-        isPublished: true
+        isPublished: false
     });
 
     const [track1, track2, track3, track4] = await Track.create({
@@ -109,7 +109,7 @@ const run = async () => {
         time: '4:31',
         number: 3,
         youtube: 'zMBTvuUlm98',
-        isPublished: true
+        isPublished: false
     });
 
     await Track.create({
@@ -139,7 +139,7 @@ const run = async () => {
         time: '3:15',
         number: 5,
         youtube: 'NDT2Xhvadnw',
-        isPublished: true
+        isPublished: false
     }, {
         name: 'Meds',
         album: placeboAlbum2._id,
@@ -244,7 +244,7 @@ const run = async () => {
         time: '5:29',
         number: 2,
         youtube: 'fsmzF1TqslY',
-        isPublished: true
+        isPublished: false
     }, {
         name: 'Spectrum',
         album: florenceAlbum1._id,
