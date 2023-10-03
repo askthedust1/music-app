@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../app/hook';
 import { logout } from '../../features/users/usersThunk';
-import {userRoles} from "../../constants";
+import {apiUrl, userRoles} from "../../constants";
 import {IUser} from "../../types";
 
 interface IProps {
@@ -15,6 +15,7 @@ const UserMenu: React.FC<IProps> = ({ user }) => {
 
     return (
         <ul>
+            {user.avatar ? <img className="user-ava" src={apiUrl + '/'  + user.avatar} alt={user.username}/> : null}
             <b className="list" style={{color: '#00E20B'}}>Hello, {user.username}!</b>
             <NavLink className="list" to="/">Home</NavLink>
             <NavLink className="list" to="/tracks_history">Track History</NavLink>

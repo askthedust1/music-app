@@ -13,11 +13,16 @@
     text-decoration: none;
 }
 
-.navigation a:hover, li:hover{
+.navigation li:hover{
     padding: 8px 15px;
     border-bottom: 2px solid #32a8e6;
     cursor: pointer;
     text-decoration: none;
+}
+
+.navigation ul {
+    display: flex;
+    align-items: center;
 }
 
 .cf:after {
@@ -104,4 +109,11 @@
 .dropdown:hover .dropbtn {
     background-color: #00E20B;
 }
+
+.user-ava {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
 

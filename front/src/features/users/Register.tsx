@@ -5,6 +5,7 @@ import { selectRegisterError } from './usersSlice';
 import { register } from './usersThunk';
 import {RegisterMutation} from "../../types";
 import {useAppDispatch, useAppSelector} from "../../app/hook";
+import FileInput from "../../components/FileInput/FileInput";
 
 const Register = () => {
     const dispatch = useAppDispatch();
@@ -14,7 +15,8 @@ const Register = () => {
     const [state, setState] = useState<RegisterMutation>({
         username: '',
         password: '',
-        name: ''
+        name: '',
+        avatar: null,
     });
 
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,6 +43,17 @@ const Register = () => {
             return error?.errors[name].message;
         } catch {
             return undefined;
+        }
+    };
+
+    const filesInputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, files } = e.target;
+
+        if (files) {
+            setState((prevState) => ({
+                ...prevState,
+                [name]: files[0],
+            }));
         }
     };
 
@@ -85,7 +98,7 @@ const Register = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
-                                sx={{width: '100%', background: 'white', borderRadius: 2}}
+                                sx={{width: '100%', background: 'white', borderRadius: 2, marginBottom: '15px'}}
                                 name="password"
                                 label="Password"
                                 type="password"
@@ -96,6 +109,13 @@ const Register = () => {
                                 helperText={getFieldError('password')}
                             />
                         </Grid>
+                    </Grid>
+                    <Grid item xs>
+                        <FileInput
+                            onChange={filesInputChangeHandler}
+                            name="avatar"
+                            label="avatar"
+                        />
                     </Grid>
                     <Button
                         type="submit"

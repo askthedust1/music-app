@@ -4,17 +4,19 @@ import { Error } from 'mongoose';
 import {OAuth2Client} from "google-auth-library";
 import config from "../config";
 import * as  crypto from "crypto";
+import {imagesUpload} from "../multer";
 
 const usersRouter = express.Router();
 
 const client = new OAuth2Client(config.google.clientId);
 
-usersRouter.post('/', async (req, res, next) => {
+usersRouter.post('/', imagesUpload.single('avatar'), async (req, res, next) => {
     try {
         const user = new User({
             username: req.body.username,
             password: req.body.password,
-            name: req.body.name
+            name: req.body.name,
+            avatar: req.file ? req.file.filename : null,
         });
 
         user.generateToken();

@@ -88,6 +88,7 @@ export interface RegisterMutation {
     username: string;
     password: string;
     name: string;
+    avatar: string | null;
 }
 
 export interface LoginMutation {
@@ -102,6 +103,7 @@ export interface IUser {
     name: string;
     token: string;
     role: string;
+    avatar: string;
 }
 
 export interface RegisterResponse {
