@@ -5,7 +5,8 @@ import {Alert, Avatar, Box, Button, Container, Grid, Link, TextField, Typography
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import {useAppDispatch, useAppSelector} from "../../app/hook";
 import {selectLoginError} from "./usersSlice";
-import { login } from './usersThunk';
+import {googleLogin, login} from './usersThunk';
+import {GoogleLogin} from "@react-oauth/google";
 
 
 const Login = () => {
@@ -19,6 +20,10 @@ const Login = () => {
         password: '',
     });
 
+    const googleLoginHandler = async (credential: string) => {
+        await dispatch(googleLogin(credential)).unwrap();
+        navigate('/');
+    };
 
     const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
@@ -53,6 +58,20 @@ const Login = () => {
                 <Typography component="h1" variant="h5" sx={{color: 'white'}}>
                     Sign in
                 </Typography>
+
+                <Box sx={{ pt: 2 }}>
+                    <GoogleLogin
+                        onSuccess={(credentialResponse) => {
+                            if (credentialResponse.credential) {
+                                void googleLoginHandler(credentialResponse.credential);
+                            }
+                        }}
+                        onError={() => {
+                            console.log('Login Failed');
+                        }}
+                    />
+                </Box>
+
                 {error && (
                     <Alert
                         severity="error"

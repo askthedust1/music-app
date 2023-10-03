@@ -44,7 +44,8 @@ const UserSchema = new Schema<IUser, UserModel, IUserMethods>({
     token: {
         type: String,
         required: true,
-    }
+    },
+    googleID: String,
 });
 
 UserSchema.pre('save', async function(next) {
