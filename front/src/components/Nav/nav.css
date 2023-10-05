@@ -1,119 +1,119 @@
-.navigation ul{
-    padding-left: 0;
-    padding-right: 20px;
-    margin: 0;
-    list-style-type: none;
+.navigation ul {
+  padding-left: 0;
+  padding-right: 20px;
+  margin: 0;
+  list-style-type: none;
 }
 
-.list{
-    display: inline-block;
-    padding: 10px 15px;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-decoration: none;
+.list {
+  display: inline-block;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.navigation li:hover{
-    padding: 8px 15px;
-    border-bottom: 2px solid #32a8e6;
-    cursor: pointer;
-    text-decoration: none;
+.navigation li:hover {
+  padding: 8px 15px;
+  border-bottom: 2px solid #32a8e6;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .navigation ul {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .cf:after {
-    clear: both;
+  clear: both;
 }
 
 .cf {
-    *zoom: 1;
+  *zoom: 1;
 }
 
 .logo {
-    width: 100px;
-    height: 100px;
-    margin-left: 20px;
+  width: 100px;
+  height: 100px;
+  margin-left: 20px;
 }
 
 .container1 {
-    width: 100%;
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header-wrap-one{
-    color: #fff;
-    background: #2b2b31;
-    border-bottom: #00E20B 7px solid;
+.header-wrap-one {
+  color: #fff;
+  background: #2b2b31;
+  border-bottom: #00e20b 7px solid;
 }
 
-.header-wrap-one a{
-    color: #fff;
+.header-wrap-one a {
+  color: #fff;
 }
 
-
-.header-wrap-one .navigation, .header-wrap-one .menu-toggle{
-    text-align: right;
+.header-wrap-one .navigation,
+.header-wrap-one .menu-toggle {
+  text-align: right;
 }
 
-.header-wrap-one .menu-toggle{
-    padding: 10px 0;
+.header-wrap-one .menu-toggle {
+  padding: 10px 0;
 }
 
 .dropbtn {
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    text-transform: uppercase;
-    background: none;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-transform: uppercase;
+  background: none;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: black;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .dropdown-content .list {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
 }
 
-.dropdown-content .list:hover {background-color: #00E20B}
+.dropdown-content .list:hover {
+  background-color: #00e20b;
+}
 
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #00E20B;
+  background-color: #00e20b;
 }
 
 .user-ava {
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
 }
-
-

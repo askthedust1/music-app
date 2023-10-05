@@ -1,21 +1,20 @@
 import { apiUrl } from './constants';
-import axios, {AxiosHeaders} from "axios";
-import {Store} from "@reduxjs/toolkit";
-import {RootState} from "./app/store";
+import axios, { AxiosHeaders } from 'axios';
+import { Store } from '@reduxjs/toolkit';
+import { RootState } from './app/store';
 
 export const addInterceptors = (store: Store<RootState>) => {
-    axiosApi.interceptors.request.use((config) => {
-        const token = store.getState().users.user?.token;
-        const headers = config.headers as AxiosHeaders;
-        headers.set('Authorization', token);
+  axiosApi.interceptors.request.use((config) => {
+    const token = store.getState().users.user?.token;
+    const headers = config.headers as AxiosHeaders;
+    headers.set('Authorization', token);
 
-
-        return config;
-    });
+    return config;
+  });
 };
 
 const axiosApi = axios.create({
-    baseURL: apiUrl,
+  baseURL: apiUrl,
 });
 
 export default axiosApi;
