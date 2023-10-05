@@ -103,6 +103,7 @@ export interface IUser {
   token: string;
   role: string;
   avatar: string;
+  googleID?: string;
 }
 
 export interface RegisterResponse {

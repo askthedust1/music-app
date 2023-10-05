@@ -13,11 +13,23 @@ const UserMenu: React.FC<IProps> = ({ user }) => {
   const dispatch = useAppDispatch();
   const handleLogout = () => dispatch(logout());
 
+  let userAva;
+
+  if (user.googleID) {
+    userAva = user.avatar;
+  }
+
+  if (!user.googleID) {
+    userAva = apiUrl + '/' + user.avatar;
+  }
+
   return (
     <ul>
       {user.avatar ? (
-        <img className="user-ava" src={apiUrl + '/' + user.avatar} alt={user.username} />
-      ) : null}
+        <img className="user-ava" src={userAva} alt={user.username} />
+      ) : (
+        <img className="user-ava" src="https://i.redd.it/v6fk4w7a76j91.png" alt={user.username} />
+      )}
       <b className="list" style={{ color: '#00E20B' }}>
         Hello, {user.username}!
       </b>

@@ -40,4 +40,5 @@ export interface IUser {
   avatar: string | null;
   role: string;
   googleID?: string;
+  facebookID?: string;
 }
